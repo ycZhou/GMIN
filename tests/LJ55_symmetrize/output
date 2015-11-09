@@ -1,0 +1,416 @@
+ 55  atoms in the system
+Initial coordinates:
+       -2.1400992592        0.4331901075        1.6174311926
+        0.6552099377       -0.3228341348       -1.8012330545
+        1.6696527311       -1.2612149135       -0.0218678857
+       -0.1400880795        1.6886022481       -1.1685021356
+        1.5012756357        0.1701897414        1.7105607295
+        0.3845186552        1.9929165821        1.0007225345
+       -0.4092755922       -1.8968393374       -0.5981552838
+       -1.5240787099       -0.0773153979       -1.3065996303
+        0.1142847546       -1.5929201237        1.5671979650
+       -1.6939584239        1.3454337312        0.4297512234
+       -0.6879942202        0.4148342071        2.1943023526
+       -1.8595806017       -0.8543056929        0.7784653276
+        1.7701464624       -0.1556901184       -0.2012566377
+        1.2572204439        0.3187735910       -1.1009458119
+        0.8554770479        1.3356697295       -0.7814595360
+        1.6855097840        0.5678258369        0.6744779270
+        1.1203666102        1.4895215483        0.3157239900
+        1.1716357244       -0.7987114185       -0.9203232372
+        1.5985406094       -0.5502646403        0.8492832294
+        0.2600253418        0.6879340951       -1.4985234583
+        0.9508094500        1.0894708008        1.3645953224
+        0.1235316146        1.8547763042       -0.0865265518
+        0.1247620290       -1.1183890251       -1.2098115326
+        0.6352393643       -1.5905916772       -0.3144107306
+       -0.4373836485       -0.2013980464       -1.5664207187
+        0.8986126599       -1.4372722043        0.7769922139
+        0.8143858415       -0.7168084870        1.6485647276
+       -0.8370839823        0.8109300921       -1.2482274976
+       -0.9231428023        1.5308459675       -0.3760075754
+        0.4129003009        0.2948756830        1.9675354895
+       -0.1479479882       -1.7580391321        0.4861253749
+       -0.9730128869       -0.9947861538       -0.9611117534
+       -1.1430605644       -1.3895692094        0.0876887867
+       -0.1461793894        1.2119890094        1.6104079871
+       -0.6575421965        1.6850241427        0.7134244985
+       -1.6189651653        0.6426566634       -0.4482932616
+       -0.2825174122       -0.5936597843        1.8959238127
+       -1.7030679486       -0.4752034722       -0.2708513736
+       -0.8780298491       -1.2384183574        1.1763230825
+       -1.1836675081        0.8922126688        1.3142357737
+       -1.7819415063        0.2438515400        0.5911594334
+       -1.2682890585       -0.2313267085        1.4921499214
+       -0.0049839631        0.0493030848        0.1977120210
+        0.9082815823        0.4996831721       -0.0854185870
+        0.8166158864       -0.5937544891        0.0901940367
+        0.3187312718       -0.1331956879       -0.7831139651
+       -0.0710669568        0.8538912940       -0.4729361935
+        0.7345062371        0.1086715242        0.9401031754
+        0.1858890421        1.0032454111        0.5920125528
+       -0.2044458251       -0.9067592373       -0.1927837476
+       -0.7522144712       -0.0133164101       -0.5401847051
+        0.0520937192       -0.7573541371        0.8706220670
+       -0.8323994193        0.6882245703        0.3067767486
+       -0.3348192406        0.2279276099        1.1795727216
+       -0.9140489976       -0.3996526962        0.4791961883
+ 
+  55 LJ atoms
+Searching for approximate symmetry elements every      2 steps
+Grid points for starting positions in centre of mass optimsation=     3 shift value=        0.10000 maximum steps=    50
+Exponential parameter in C of M optimsation=       50.00000
+Distance tolerance for orbits=        0.30000 tolerance for approximate symmetry elements=        0.50000
+Maximum number of quenches for floater/hole permutations=   20
+Container radius=        3.4816254743
+Sloppy quench tolerances for RMS gradient    0.0100000000
+In run   1 temperature fixed at    1.100    
+Step size and angular threshold will be adjusted for acceptance ratio       0.5000 initial values=      0.4000      0.5000
+Exponential factor for proposed steps=      0.0000
+Configuration will be reset to quench geometry
+Sampling using Boltzman weights
+Nocedal LBFGS minimization
+Number of updates before reset in LBFGS=  4
+Maximum step size=        0.4000000000
+Guess for initial diagonal elements in LBFGS=  0.1000    
+Final quench tolerance for RMS gradient    0.0010000000
+Energy difference criterion for minima=   0.0200000000
+Maximum number of iterations: sloppy quenches   500 final quenches   500
+Run   1:         1 steps with temperature scaled by  0.10000000E+01
+Debug printing is on
+Target energies:
+   -279.2485
+ 
+Calculating initial energy
+ Resetting LBFGS minimiser
+ Energy and RMS force=     -276.6042885062        0.0006773249 after      0 LBFGS steps
+ Diagonal inverse Hessian elements are now         0.0000000000
+Qu       1 E=     -276.6042885062 steps=    0 RMS=      0.0006773 Markov E=     -276.6042885062 t=        0.04
+Starting MC run of          1 steps
+Temperature will be multiplied by      1.00000000 at every step
+centre of mass:        -0.08238        0.03769        0.23571
+iterations, OTRIAL=    16       -0.1889614074       -0.0757132096        0.1647972747
+iterations, OTRIAL=    23       -0.1138621965       -0.1620448446        0.1953091157
+iterations, OTRIAL=     9       -0.1711855488       -0.0679982539        0.3618775282
+iterations, OTRIAL=    13       -0.1844567162        0.0502975845        0.1354630524
+iterations, OTRIAL=    12       -0.1516605288        0.0707390095        0.2527382323
+iterations, OTRIAL=    12       -0.1803464316        0.0424869053        0.3463820774
+iterations, OTRIAL=     9       -0.1906454815        0.1330422226        0.1503419670
+iterations, OTRIAL=    15       -0.2050222718        0.0989203014        0.2393408245
+iterations, OTRIAL=     9       -0.1907056709        0.1269966508        0.3445650634
+iterations, OTRIAL=    19       -0.0979367345       -0.0771951087        0.1570069987
+iterations, OTRIAL=    13       -0.1127512642       -0.0972516863        0.2447153466
+iterations, OTRIAL=    20       -0.0936301196       -0.0985996540        0.3604060952
+iterations, OTRIAL=    15       -0.0962002827        0.0407516092        0.1108473328
+iterations, OTRIAL=    13       -0.1693923099        0.0442277603        0.2887673220
+iterations, OTRIAL=    13       -0.1122906713        0.0263494584        0.3064573136
+iterations, OTRIAL=    15       -0.0844872694        0.1658221962        0.1227564940
+iterations, OTRIAL=    23       -0.0518281695        0.1838063847        0.2673089399
+iterations, OTRIAL=    11       -0.0762242192        0.1563507906        0.3341747339
+iterations, OTRIAL=    13        0.0458807615       -0.0889744378        0.1560085568
+iterations, OTRIAL=    19        0.0843784355       -0.1206687504        0.2247941357
+iterations, OTRIAL=    23        0.0320438436       -0.0624349815        0.4345483853
+iterations, OTRIAL=    19        0.0314771276        0.0262973378        0.0802964812
+iterations, OTRIAL=    17        0.0447691615        0.0462553069        0.3494751170
+iterations, OTRIAL=    16        0.0558546717        0.0419879438        0.3834776770
+iterations, OTRIAL=    15        0.0763823597        0.1742564821        0.1033530336
+iterations, OTRIAL=    12        0.0155685918        0.1620226268        0.2454465429
+iterations, OTRIAL=    17        0.0099717369        0.1239166985        0.3649603911
+origin shifted from      -0.1139     -0.1620      0.1953
+orbit      1 size      1 square distance         0.05653
+members of orbit      1 size      1 square distance         0.05653
+   43
+orbit      2 size     12 square distance         1.16033
+members of orbit      2 size     12 square distance         1.16033
+   50   55   52   51   45   46   54   53   48   47   44   49
+orbit      3 size     41 square distance         3.72389
+members of orbit      3 size     41 square distance         3.72389
+   33   31   39   32   38   24   23   26   42   41   37   25
+   27   18   36   40   19   28   30   13    7   20   14   29
+   12   34   35    9   16   21   15   22    8   17    3    2
+   11   10    5    4    6
+orbit      4 size      1 square distance         6.48237
+members of orbit      4 size      1 square distance         6.48237
+    1
+largest orbit has     41 members starting from sorted position     14 square distance         3.72389
+ e/value       0.0000 e/vec       0.38     -0.21      0.90 axis and plane deviations=       0.09       0.00
+ e/value       0.0008 e/vec       0.84     -0.33     -0.43 axis and plane deviations=       0.09       0.00
+ e/value       0.0932 e/vec       0.39      0.92      0.05 axis and plane deviations=       0.00       0.09
+CofM      dev         0.09402
+min line  dev         0.00077 e/vector      3 e/value         0.09325
+min plane dev         0.00000 e/vector      1 e/value         0.00000
+checking approximate centre of symmetry
+J1,min dist=    1    0.8027122812    
+J1,min dist=   12    0.7241597903    
+number of holes=     4 number of floaters=     2
+NCHOICE:
+   1   2
+ Resetting LBFGS minimiser
+ Energy and RMS force=     -231.8655339320       79.3467550730 after      0 LBFGS steps
+ Energy and RMS force=     -269.5767117011        6.1543432366 after      1 LBFGS steps, step: 0.1000000000
+ Energy and RMS force=     -270.1693388590        4.8153595787 after      2 LBFGS steps, step: 0.0084494299
+ Energy and RMS force=     -271.5094397300        1.8550671784 after      3 LBFGS steps, step: 0.0337406594
+ Energy and RMS force=     -271.9934953760        1.0037998416 after      4 LBFGS steps, step: 0.0278064946
+ Energy and RMS force=     -272.3438609278        0.5591216122 after      5 LBFGS steps, step: 0.0393841165
+ Energy and RMS force=     -272.5441816255        0.6645131360 after      6 LBFGS steps, step: 0.0471066598
+ Energy and RMS force=     -272.6296541248        1.0092266146 after      7 LBFGS steps, step: 0.0685788595
+ Energy and RMS force=     -272.7478606638        0.4925084265 after      8 LBFGS steps, step: 0.0134726830
+ Energy and RMS force=     -272.8653744117        0.5418435294 after      9 LBFGS steps, step: 0.0288609252
+ Energy and RMS force=     -273.0166593579        0.7407152967 after     10 LBFGS steps, step: 0.0606577050
+ Energy and RMS force=     -273.1674388970        0.6033484284 after     11 LBFGS steps, step: 0.0665292340
+ Energy and RMS force=     -273.2480879785        0.6879192761 after     12 LBFGS steps, step: 0.0599763240
+ Energy and RMS force=     -273.3071997399        0.4089146734 after     13 LBFGS steps, step: 0.0234011062
+ Energy and RMS force=     -273.3312044371        0.2476567809 after     14 LBFGS steps, step: 0.0080891155
+ Energy and RMS force=     -273.3629860468        0.2041003441 after     15 LBFGS steps, step: 0.0220538284
+ Energy and RMS force=     -273.3804880932        0.1925786588 after     16 LBFGS steps, step: 0.0166354639
+ Energy and RMS force=     -273.3901609217        0.3604852621 after     17 LBFGS steps, step: 0.0271155284
+ Energy and RMS force=     -273.4057689073        0.1671868526 after     18 LBFGS steps, step: 0.0066929491
+ Energy and RMS force=     -273.4179959150        0.1492010176 after     19 LBFGS steps, step: 0.0123917650
+ Energy and RMS force=     -273.4291413834        0.1644702859 after     20 LBFGS steps, step: 0.0177681925
+ Energy and RMS force=     -273.4329606479        0.4954634870 after     21 LBFGS steps, step: 0.0373176737
+ Energy and RMS force=     -273.4520947632        0.1321400417 after     22 LBFGS steps, step: 0.0085035912
+ Energy and RMS force=     -273.4564106133        0.0916431651 after     23 LBFGS steps, step: 0.0042623314
+ Energy and RMS force=     -273.4616964391        0.1011043254 after     24 LBFGS steps, step: 0.0106909471
+ Energy and RMS force=     -273.4650435571        0.2447832819 after     25 LBFGS steps, step: 0.0170361419
+ Energy and RMS force=     -273.4701880291        0.0808688927 after     26 LBFGS steps, step: 0.0062223567
+ Energy and RMS force=     -273.4716499588        0.0571298220 after     27 LBFGS steps, step: 0.0032246655
+ Energy and RMS force=     -273.4730612977        0.0588156440 after     28 LBFGS steps, step: 0.0050103924
+ Energy and RMS force=     -273.4747066631        0.0902569965 after     29 LBFGS steps, step: 0.0080256633
+ Energy and RMS force=     -273.4755202002        0.0541714008 after     30 LBFGS steps, step: 0.0063230575
+ Energy and RMS force=     -273.4759248587        0.0285088381 after     31 LBFGS steps, step: 0.0017588083
+ Energy and RMS force=     -273.4762825261        0.0229522618 after     32 LBFGS steps, step: 0.0015882620
+ Energy and RMS force=     -273.4767185805        0.0282284836 after     33 LBFGS steps, step: 0.0034643831
+ Energy and RMS force=     -273.4768083732        0.0568657140 after     34 LBFGS steps, step: 0.0043666835
+ Energy and RMS force=     -273.4770984712        0.0162802999 after     35 LBFGS steps, step: 0.0009345162
+ Energy and RMS force=     -273.4771719229        0.0123484188 after     36 LBFGS steps, step: 0.0006967419
+ Energy and RMS force=     -273.4772817278        0.0106129841 after     37 LBFGS steps, step: 0.0017706234
+ Energy and RMS force=     -273.4773636466        0.0261997503 after     38 LBFGS steps, step: 0.0024159513
+ Energy and RMS force=     -273.4774468974        0.0080424192 after     39 LBFGS steps, step: 0.0014728547
+ Diagonal inverse Hessian elements are now         0.0018938794
+Qu     2 E=     -273.4774468974 steps=    39 RMS=      0.0080424
+NCHOICE:
+   1   3
+ Resetting LBFGS minimiser
+ Energy and RMS force=       11.7351316582      352.7534067675 after      0 LBFGS steps
+ Energy and RMS force=     -191.2134371934       84.4066708488 after      1 LBFGS steps, step: 0.1000000000
+ Energy and RMS force=     -221.4903644055       54.1226974939 after      2 LBFGS steps, step: 0.0346145617
+ Energy and RMS force=     -251.7301688007       23.6044204676 after      3 LBFGS steps, step: 0.0639792012
+ Energy and RMS force=     -262.8443006016       11.6282490951 after      4 LBFGS steps, step: 0.0511905551
+ Energy and RMS force=     -268.6428441603        5.4335427068 after      5 LBFGS steps, step: 0.0559520591
+ Energy and RMS force=     -271.7573207722        2.7466885426 after      6 LBFGS steps, step: 0.0630436828
+ Energy and RMS force=     -273.7662464824        1.5084738284 after      7 LBFGS steps, step: 0.0811061344
+ Energy and RMS force=     -274.8834964441        1.4845815777 after      8 LBFGS steps, step: 0.1013297379
+ Energy and RMS force=     -275.0976007490        1.9026733683 after      9 LBFGS steps, step: 0.1159307222
+ Energy and RMS force=     -275.4824187018        0.6695104324 after     10 LBFGS steps, step: 0.0330244424
+ Energy and RMS force=     -275.6078018979        0.5836121750 after     11 LBFGS steps, step: 0.0182973970
+ Energy and RMS force=     -275.8426570833        0.7450192642 after     12 LBFGS steps, step: 0.0549465221
+ Energy and RMS force=     -276.0354365175        0.7016776099 after     13 LBFGS steps, step: 0.0607659359
+ Energy and RMS force=     -276.0401113322        1.4671186066 after     14 LBFGS steps, step: 0.1075777697
+ Energy and RMS force=     -276.2612019349        0.4013383694 after     15 LBFGS steps, step: 0.0332787005
+ Energy and RMS force=     -276.3088743436        0.3254888589 after     16 LBFGS steps, step: 0.0138619603
+ Energy and RMS force=     -276.4086685050        0.3452749461 after     17 LBFGS steps, step: 0.0540198208
+ energy increased from     -276.4086685050 to  -276.3565873212 decreasing step to      0.00569982
+ Energy and RMS force=     -276.4231957313        0.2892048695 after     18 LBFGS steps, step: 0.0056998208
+ Energy and RMS force=     -276.4762018617        0.2713142595 after     19 LBFGS steps, step: 0.0414194690
+ Energy and RMS force=     -276.5076795149        0.3276554754 after     20 LBFGS steps, step: 0.0319785137
+ Energy and RMS force=     -276.5192721460        0.4833087653 after     21 LBFGS steps, step: 0.0406435125
+ Energy and RMS force=     -276.5417214065        0.1689886363 after     22 LBFGS steps, step: 0.0130293482
+ Energy and RMS force=     -276.5495000184        0.1333169090 after     23 LBFGS steps, step: 0.0061302257
+ Energy and RMS force=     -276.5614698639        0.1530175299 after     24 LBFGS steps, step: 0.0143336669
+ Energy and RMS force=     -276.5737320473        0.2874638531 after     25 LBFGS steps, step: 0.0235004887
+ Energy and RMS force=     -276.5855795680        0.1126908932 after     26 LBFGS steps, step: 0.0178636030
+ Energy and RMS force=     -276.5910639794        0.0919229558 after     27 LBFGS steps, step: 0.0071987818
+ Energy and RMS force=     -276.5977726499        0.0830092500 after     28 LBFGS steps, step: 0.0152495257
+ energy increased from     -276.5977726499 to  -276.5874793136 decreasing step to      0.00176264
+ Energy and RMS force=     -276.5987341016        0.0634932513 after     29 LBFGS steps, step: 0.0017626432
+ Energy and RMS force=     -276.6011728844        0.0529215964 after     30 LBFGS steps, step: 0.0089901642
+ Energy and RMS force=     -276.6027514545        0.0446797007 after     31 LBFGS steps, step: 0.0063129974
+ energy increased from     -276.6027514545 to  -276.6010973398 decreasing step to      0.00061475
+ Energy and RMS force=     -276.6029694549        0.0297648907 after     32 LBFGS steps, step: 0.0006147540
+ Energy and RMS force=     -276.6034090718        0.0246894640 after     33 LBFGS steps, step: 0.0027369778
+ Energy and RMS force=     -276.6036673589        0.0198126565 after     34 LBFGS steps, step: 0.0018195233
+ Energy and RMS force=     -276.6037981099        0.0416309597 after     35 LBFGS steps, step: 0.0030186363
+ Energy and RMS force=     -276.6039877304        0.0151094180 after     36 LBFGS steps, step: 0.0006884272
+ Energy and RMS force=     -276.6040496435        0.0134814183 after     37 LBFGS steps, step: 0.0005206226
+ Energy and RMS force=     -276.6041448238        0.0111400816 after     38 LBFGS steps, step: 0.0013271203
+ Energy and RMS force=     -276.6041846490        0.0210900155 after     39 LBFGS steps, step: 0.0015615732
+ Energy and RMS force=     -276.6042311136        0.0074003482 after     40 LBFGS steps, step: 0.0007028684
+ Diagonal inverse Hessian elements are now         0.0018937793
+Qu     3 E=     -276.6042311136 steps=    40 RMS=      0.0074003
+NCHOICE:
+   1   4
+ Resetting LBFGS minimiser
+ Energy and RMS force=     -234.7558048499       79.3468964148 after      0 LBFGS steps
+ Energy and RMS force=     -272.4672040417        6.1548031597 after      1 LBFGS steps, step: 0.1000000000
+ Energy and RMS force=     -273.0599470539        4.8160941920 after      2 LBFGS steps, step: 0.0084501857
+ Energy and RMS force=     -274.4017236694        1.8574706867 after      3 LBFGS steps, step: 0.0337692125
+ Energy and RMS force=     -274.8882606262        1.0070422027 after      4 LBFGS steps, step: 0.0278987646
+ Energy and RMS force=     -275.2428398182        0.5631811014 after      5 LBFGS steps, step: 0.0396519223
+ Energy and RMS force=     -275.4493570707        0.6455539872 after      6 LBFGS steps, step: 0.0475542024
+ Energy and RMS force=     -275.5151683661        1.1419718500 after      7 LBFGS steps, step: 0.0718686904
+ Energy and RMS force=     -275.6497005480        0.4928775975 after      8 LBFGS steps, step: 0.0138307619
+ Energy and RMS force=     -275.7473282310        0.4971642982 after      9 LBFGS steps, step: 0.0223680745
+ Energy and RMS force=     -275.9015017891        0.7242520145 after     10 LBFGS steps, step: 0.0588116324
+ Energy and RMS force=     -276.0427342537        0.6293164972 after     11 LBFGS steps, step: 0.0643115096
+ Energy and RMS force=     -276.1517215426        0.5649784672 after     12 LBFGS steps, step: 0.0697305547
+ Energy and RMS force=     -276.1918496558        0.5658056995 after     13 LBFGS steps, step: 0.0289582639
+ Energy and RMS force=     -276.2239252141        0.2523115719 after     14 LBFGS steps, step: 0.0140308058
+ Energy and RMS force=     -276.2437585586        0.2002350317 after     15 LBFGS steps, step: 0.0114912180
+ Energy and RMS force=     -276.2637436527        0.2101477718 after     16 LBFGS steps, step: 0.0174694211
+ Energy and RMS force=     -276.2808757783        0.3389020275 after     17 LBFGS steps, step: 0.0256692394
+ Energy and RMS force=     -276.2985983167        0.1670969328 after     18 LBFGS steps, step: 0.0214124816
+ Energy and RMS force=     -276.3087048755        0.1401167007 after     19 LBFGS steps, step: 0.0089345020
+ Energy and RMS force=     -276.3214468032        0.1907978811 after     20 LBFGS steps, step: 0.0246739936
+ Energy and RMS force=     -276.3298229002        0.2739083389 after     21 LBFGS steps, step: 0.0200964567
+ Energy and RMS force=     -276.3380933520        0.1425077943 after     22 LBFGS steps, step: 0.0038656833
+ Energy and RMS force=     -276.3463042696        0.1060953013 after     23 LBFGS steps, step: 0.0126119491
+ Energy and RMS force=     -276.3507949139        0.1080182349 after     24 LBFGS steps, step: 0.0094243129
+ Energy and RMS force=     -276.3577112648        0.1910502092 after     25 LBFGS steps, step: 0.0254590177
+ Energy and RMS force=     -276.3585714250        0.1947406064 after     26 LBFGS steps, step: 0.0153706803
+ Energy and RMS force=     -276.3625402228        0.0509699778 after     27 LBFGS steps, step: 0.0100922085
+ Energy and RMS force=     -276.3632404751        0.0395686250 after     28 LBFGS steps, step: 0.0015603243
+ Energy and RMS force=     -276.3647186237        0.0380214006 after     29 LBFGS steps, step: 0.0062018024
+ Energy and RMS force=     -276.3648985914        0.1023038223 after     30 LBFGS steps, step: 0.0055669463
+ Energy and RMS force=     -276.3657822889        0.0293367684 after     31 LBFGS steps, step: 0.0021519309
+ Energy and RMS force=     -276.3660275341        0.0202649650 after     32 LBFGS steps, step: 0.0014270285
+ Energy and RMS force=     -276.3662685092        0.0207972108 after     33 LBFGS steps, step: 0.0023683534
+ Energy and RMS force=     -276.3664467693        0.0329410113 after     34 LBFGS steps, step: 0.0027973764
+ Energy and RMS force=     -276.3665706178        0.0176105618 after     35 LBFGS steps, step: 0.0017905385
+ Energy and RMS force=     -276.3666179018        0.0106175474 after     36 LBFGS steps, step: 0.0005822423
+ Energy and RMS force=     -276.3666749277        0.0080372095 after     37 LBFGS steps, step: 0.0007889599
+ Diagonal inverse Hessian elements are now         0.0018989947
+Qu     4 E=     -276.3666749277 steps=    37 RMS=      0.0080372
+NCHOICE:
+   2   3
+ Resetting LBFGS minimiser
+ Energy and RMS force=      -29.6019857052      343.7204215219 after      0 LBFGS steps
+ Energy and RMS force=     -216.6700965090       69.1660230702 after      1 LBFGS steps, step: 0.1000000000
+ Energy and RMS force=     -236.5397932197       45.7135430177 after      2 LBFGS steps, step: 0.0273469014
+ Energy and RMS force=     -258.6472199808       19.5888715459 after      3 LBFGS steps, step: 0.0558380990
+ Energy and RMS force=     -266.5446281239        9.6871744092 after      4 LBFGS steps, step: 0.0438521547
+ Energy and RMS force=     -270.8181734131        4.5702216777 after      5 LBFGS steps, step: 0.0494636508
+ Energy and RMS force=     -273.2205436477        2.3663021230 after      6 LBFGS steps, step: 0.0574669344
+ Energy and RMS force=     -274.8251171544        1.3386770837 after      7 LBFGS steps, step: 0.0756343417
+ Energy and RMS force=     -275.6030807790        1.6738967719 after      8 LBFGS steps, step: 0.0957763795
+ Energy and RMS force=     -275.9414600089        0.8741536199 after      9 LBFGS steps, step: 0.0753643598
+ Energy and RMS force=     -276.0573839230        0.5267306974 after     10 LBFGS steps, step: 0.0168819517
+ Energy and RMS force=     -276.1928767962        0.4528733814 after     11 LBFGS steps, step: 0.0300569047
+ Energy and RMS force=     -276.2764296865        0.4554942143 after     12 LBFGS steps, step: 0.0340540484
+ energy increased from     -276.2764296865 to  -276.2539355347 decreasing step to      0.00425491
+ Energy and RMS force=     -276.2882304352        0.3841189482 after     13 LBFGS steps, step: 0.0042549132
+ Energy and RMS force=     -276.3287755340        0.1916152976 after     14 LBFGS steps, step: 0.0255147337
+ Energy and RMS force=     -276.3418445634        0.1481805241 after     15 LBFGS steps, step: 0.0105120695
+ energy increased from     -276.3418445634 to  -276.3409462260 decreasing step to      0.00196633
+ Energy and RMS force=     -276.3446773767        0.1294719234 after     16 LBFGS steps, step: 0.0019663319
+ Energy and RMS force=     -276.3558056105        0.0831358337 after     17 LBFGS steps, step: 0.0159567405
+ Energy and RMS force=     -276.3599968191        0.0817675597 after     18 LBFGS steps, step: 0.0085614277
+ Energy and RMS force=     -276.3618551761        0.1301137838 after     19 LBFGS steps, step: 0.0123565554
+ Energy and RMS force=     -276.3637036160        0.0541141626 after     20 LBFGS steps, step: 0.0026940491
+ Energy and RMS force=     -276.3642879616        0.0429777279 after     21 LBFGS steps, step: 0.0013643422
+ Energy and RMS force=     -276.3655017482        0.0341061740 after     22 LBFGS steps, step: 0.0049219071
+ energy increased from     -276.3655017482 to  -276.3651431894 decreasing step to      0.00086033
+ Energy and RMS force=     -276.3656527753        0.0318260981 after     23 LBFGS steps, step: 0.0008603285
+ Energy and RMS force=     -276.3662034986        0.0229122707 after     24 LBFGS steps, step: 0.0050810686
+ Energy and RMS force=     -276.3664838953        0.0207247059 after     25 LBFGS steps, step: 0.0026658351
+ Energy and RMS force=     -276.3664973909        0.0416489865 after     26 LBFGS steps, step: 0.0025952446
+ Energy and RMS force=     -276.3666429626        0.0099985647 after     27 LBFGS steps, step: 0.0008838258
+ Diagonal inverse Hessian elements are now         0.0014231119
+Qu     5 E=     -276.3666429626 steps=    27 RMS=      0.0099986
+NCHOICE:
+   2   4
+ Resetting LBFGS minimiser
+ Energy and RMS force=     -276.6042885062        0.0006773249 after      0 LBFGS steps
+ Diagonal inverse Hessian elements are now         0.0000000000
+Qu     6 E=     -276.6042885062 steps=     0 RMS=      0.0006773
+NCHOICE:
+   3   4
+ Resetting LBFGS minimiser
+ Energy and RMS force=      -32.4922525875      343.7204481739 after      0 LBFGS steps
+ Energy and RMS force=     -219.5604255029       69.1661434723 after      1 LBFGS steps, step: 0.1000000000
+ Energy and RMS force=     -239.4302123310       45.7136982069 after      2 LBFGS steps, step: 0.0273469607
+ Energy and RMS force=     -261.5378685162       19.5887325948 after      3 LBFGS steps, step: 0.0558385575
+ Energy and RMS force=     -269.4342338845        9.6849892582 after      4 LBFGS steps, step: 0.0438492923
+ Energy and RMS force=     -273.7006727908        4.5643014551 after      5 LBFGS steps, step: 0.0494115969
+ Energy and RMS force=     -276.0909415430        2.3667516965 after      6 LBFGS steps, step: 0.0572528297
+ Energy and RMS force=     -277.6976660078        1.3587272899 after      7 LBFGS steps, step: 0.0756773979
+ Energy and RMS force=     -278.4503326024        1.8871581947 after      8 LBFGS steps, step: 0.0981878824
+ Energy and RMS force=     -278.8362378565        0.7651199021 after      9 LBFGS steps, step: 0.0684278033
+ Energy and RMS force=     -278.9312262070        0.5440727002 after     10 LBFGS steps, step: 0.0135609141
+ Energy and RMS force=     -279.1127184050        0.4465551042 after     11 LBFGS steps, step: 0.0431923682
+ Energy and RMS force=     -279.1716664530        0.5252530020 after     12 LBFGS steps, step: 0.0322510325
+ Energy and RMS force=     -279.2061563699        0.2715229927 after     13 LBFGS steps, step: 0.0248118504
+ Energy and RMS force=     -279.2201623645        0.1590789567 after     14 LBFGS steps, step: 0.0075287206
+ Energy and RMS force=     -279.2315175731        0.1270517411 after     15 LBFGS steps, step: 0.0113792125
+ Energy and RMS force=     -279.2377678470        0.1493290583 after     16 LBFGS steps, step: 0.0114567481
+ Energy and RMS force=     -279.2421508541        0.0725525124 after     17 LBFGS steps, step: 0.0057315779
+ Energy and RMS force=     -279.2446779896        0.0580525870 after     18 LBFGS steps, step: 0.0059246941
+ Energy and RMS force=     -279.2459177710        0.0847312925 after     19 LBFGS steps, step: 0.0051864994
+ Energy and RMS force=     -279.2469901603        0.0372854068 after     20 LBFGS steps, step: 0.0031973914
+ Energy and RMS force=     -279.2475008139        0.0304646859 after     21 LBFGS steps, step: 0.0022239482
+ Energy and RMS force=     -279.2479529147        0.0289251872 after     22 LBFGS steps, step: 0.0028616631
+ energy increased from     -279.2479529147 to  -279.2478209483 decreasing step to      0.00039405
+ Energy and RMS force=     -279.2480333312        0.0243686590 after     23 LBFGS steps, step: 0.0003940508
+ Energy and RMS force=     -279.2483152237        0.0151930072 after     24 LBFGS steps, step: 0.0025079243
+ Energy and RMS force=     -279.2484139193        0.0104644761 after     25 LBFGS steps, step: 0.0012405559
+ energy increased from     -279.2484139193 to  -279.2483307410 decreasing step to      0.00011885
+ Energy and RMS force=     -279.2484256902        0.0070483445 after     26 LBFGS steps, step: 0.0001188465
+ Diagonal inverse Hessian elements are now         0.0050919544
+Target hit after               7 quenches             184 function calls.
+Energy=     -279.2484256902 target=     -279.2484700188
+Qu     7 E=     -279.2484256902 steps=    26 RMS=      0.0070483
+JP,RAN,POTEL,EPREV,NSUC,NFAIL= 1      0.7913184   -279.2484257   -279.2484257     0     0 ACC
+[ 1] Acceptance ratio for run=     0.00000 Step=     0.40000 Angular step factor=     0.50000 Temperature=     1.10000
+ Resetting LBFGS minimiser
+ Energy and RMS force=     -279.2484256902        0.0070483445 after      0 LBFGS steps
+ energy increased from     -279.2484256902 to  -279.2484059021 decreasing step to      0.00008197
+ Energy and RMS force=     -279.2484321715        0.0057738210 after      1 LBFGS steps, step: 0.0000819706
+ Energy and RMS force=     -279.2484545112        0.0051443915 after      2 LBFGS steps, step: 0.0004744741
+ Energy and RMS force=     -279.2484639000        0.0024797145 after      3 LBFGS steps, step: 0.0003885167
+ Energy and RMS force=     -279.2484667174        0.0018076975 after      4 LBFGS steps, step: 0.0001713660
+ Energy and RMS force=     -279.2484682896        0.0027076789 after      5 LBFGS steps, step: 0.0002939646
+ Energy and RMS force=     -279.2484693525        0.0016220331 after      6 LBFGS steps, step: 0.0000940404
+ Energy and RMS force=     -279.2484696839        0.0007157513 after      7 LBFGS steps, step: 0.0000398116
+ Diagonal inverse Hessian elements are now         0.0014394066
+Final Quench      1 energy=     -279.2484696839 steps=    7 RMS force=      0.0007158 time=        0.72
+ Resetting LBFGS minimiser
+ Energy and RMS force=     -276.6042885062        0.0006773249 after      0 LBFGS steps
+ Diagonal inverse Hessian elements are now         0.0000000000
+Final Quench      2 energy=     -276.6042885062 steps=    0 RMS force=      0.0006773 time=        0.72
+ Resetting LBFGS minimiser
+ Energy and RMS force=     -276.3666749277        0.0080372095 after      0 LBFGS steps
+ energy increased from     -276.3666749277 to  -276.3665981094 decreasing step to      0.00010658
+ Energy and RMS force=     -276.3666840626        0.0062879844 after      1 LBFGS steps, step: 0.0001065846
+ Energy and RMS force=     -276.3667074949        0.0069394717 after      2 LBFGS steps, step: 0.0004254074
+ Energy and RMS force=     -276.3667279550        0.0054101173 after      3 LBFGS steps, step: 0.0005360285
+ Energy and RMS force=     -276.3667529073        0.0062817573 after      4 LBFGS steps, step: 0.0008635666
+ energy increased from     -276.3667529073 to  -276.3666885832 decreasing step to      0.00019180
+ Energy and RMS force=     -276.3667585005        0.0055822237 after      5 LBFGS steps, step: 0.0001917981
+ Energy and RMS force=     -276.3667780867        0.0037970506 after      6 LBFGS steps, step: 0.0010183860
+ Energy and RMS force=     -276.3667858060        0.0038356854 after      7 LBFGS steps, step: 0.0006343392
+ energy increased from     -276.3667858060 to  -276.3667856018 decreasing step to      0.00003234
+ Energy and RMS force=     -276.3667867932        0.0029704435 after      8 LBFGS steps, step: 0.0000323376
+ Energy and RMS force=     -276.3667895777        0.0017290215 after      9 LBFGS steps, step: 0.0001767390
+ Energy and RMS force=     -276.3667905034        0.0014184311 after     10 LBFGS steps, step: 0.0000874226
+ Energy and RMS force=     -276.3667907300        0.0030499846 after     11 LBFGS steps, step: 0.0001870255
+ Energy and RMS force=     -276.3667915952        0.0007578592 after     12 LBFGS steps, step: 0.0000475607
+ Diagonal inverse Hessian elements are now         0.0019157180
+Final Quench      3 energy=     -276.3667915952 steps=   12 RMS force=      0.0007579 time=        0.73
+ Resetting LBFGS minimiser
+ Energy and RMS force=     -273.4774468974        0.0080424192 after      0 LBFGS steps
+ Energy and RMS force=     -273.4774642760        0.0207067291 after      1 LBFGS steps, step: 0.0010672284
+ Energy and RMS force=     -273.4775006149        0.0067319592 after      2 LBFGS steps, step: 0.0002943476
+ Energy and RMS force=     -273.4775066069        0.0055237980 after      3 LBFGS steps, step: 0.0000812786
+ Energy and RMS force=     -273.4775405586        0.0045568769 after      4 LBFGS steps, step: 0.0008150676
+ Energy and RMS force=     -273.4775524089        0.0122955153 after      5 LBFGS steps, step: 0.0010785444
+ Energy and RMS force=     -273.4775676174        0.0042693484 after      6 LBFGS steps, step: 0.0004265232
+ Energy and RMS force=     -273.4775721575        0.0027273058 after      7 LBFGS steps, step: 0.0002021766
+ Energy and RMS force=     -273.4775755065        0.0022772397 after      8 LBFGS steps, step: 0.0002501577
+ Energy and RMS force=     -273.4775782141        0.0049028443 after      9 LBFGS steps, step: 0.0002984002
+ Energy and RMS force=     -273.4775812710        0.0019686186 after     10 LBFGS steps, step: 0.0002208216
+ Energy and RMS force=     -273.4775826342        0.0013588094 after     11 LBFGS steps, step: 0.0001285019
+ Energy and RMS force=     -273.4775836591        0.0013686040 after     12 LBFGS steps, step: 0.0001352926
+ energy increased from     -273.4775836591 to  -273.4775833560 decreasing step to      0.00002557
+ Energy and RMS force=     -273.4775838960        0.0012131212 after     13 LBFGS steps, step: 0.0000255722
+ Energy and RMS force=     -273.4775849547        0.0008674217 after     14 LBFGS steps, step: 0.0001946331
+ Diagonal inverse Hessian elements are now         0.0014952938
+Final Quench      4 energy=     -273.4775849547 steps=   14 RMS force=      0.0008674 time=        0.74

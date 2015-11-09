@@ -1,0 +1,12 @@
+GMIN.2.2:  A program suite for finding global minima
+
+ * INSTALL: Guide to compiling
+ * LICENCE: GNU general public licence
+ * doc: Documentation
+ * src: The source code
+ * tests: Test inputs and reference outputs
+
+GMIN suite is interfaced with CHARMM potential. If you would like to use that version, please contact the developers at dw34@cam.ac.uk for further instructions.
+--
+Program website:
+http://www-wales.ch.cam.ac.uk/GMIN/

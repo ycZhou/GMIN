@@ -1,0 +1,118 @@
+reading coordinates from file coords
+           56  atoms in the system
+BLN sequence of       56 beads read:
+LBLBLBLBBNNNLBBLBLBBBNNNLLBLLLBLLBNBBBLBBBBNNNLBBLBLBLBL 
+BLN dihedral types:
+EEEEEETEHTHEEEEEEEEHHEHHHHHHHHHHEHTEEEEEEETTTEEEEEEEE 
+B-B LJ coefficients:         1.00000       -1.00000
+L-L LJ coefficients:         0.33333        0.33333
+N-N LJ coefficients:         1.00000        0.00000
+Helix    dihedral coefficients:         0.00000        1.20000        1.20000        1.20000
+Extended dihedral coefficients:         0.90000        0.00000        1.20000        0.00000
+Turn     dihedral coefficients:         0.00000        0.00000        0.20000        0.00000
+Initial coordinates:
+        2.8234042800        2.1858682600        0.9596520400
+        2.0306672000        1.5810699200        0.8835802800
+        2.1758518500        1.1110190200        0.0129635300
+        1.3705029700        0.5185179200       -0.0059001100
+        1.4989127000        0.0234176700       -0.8651944400
+        0.7274642100       -0.6121356900       -0.8958373900
+        0.8148056200       -1.1145458000       -1.7560440900
+        0.0209955200       -1.7142321700       -1.6548424600
+       -0.1909231100       -2.3052613200       -2.4331579200
+       -0.2519008100       -1.7450481200       -3.2592590400
+       -0.6492761100       -2.4442209300       -3.8536076300
+       -1.5154410900       -2.6308611000       -3.3900090100
+       -1.3744744400       -2.5659496000       -2.4021249900
+       -1.0644770500       -1.6300879700       -2.2346002000
+       -0.9315330000       -1.4287679200       -1.2641383700
+       -0.5640930900       -0.5042897500       -1.3657656600
+       -0.3210558200       -0.2617490700       -0.4265602000
+        0.1493416300        0.6191618200       -0.4787361800
+        0.3804672800        0.7535677400        0.4848591600
+        0.9110866400        1.6000745100        0.5280948300
+        1.1230471300        1.7873770400        1.4872561600
+        1.5861106900        2.6726110100        1.5312206100
+        0.8761939100        3.2046700000        1.0697757100
+        0.0893587800        3.0097806500        1.6553596500
+       -0.6496221100        3.1934873700        1.0071628300
+       -0.3098935300        2.5587057000        0.3131623400
+       -0.2121547500        1.6775983200        0.7758684400
+       -1.1614489700        1.4786311700        1.0192866300
+       -1.5575524500        1.4716531800        0.1011072300
+       -1.0802849900        0.7184694300       -0.3515847000
+       -1.4239315200       -0.1136251300        0.0837607600
+       -2.4029412900       -0.0440541800       -0.1078109300
+       -2.3466836300        0.0676509900       -1.0999585800
+       -1.8014734900       -0.7535985900       -1.2681698700
+       -2.4169030100       -1.5344836600       -1.1610943100
+       -1.7414299400       -2.2701221600       -1.1103780200
+       -1.3941252500       -2.0980119600       -0.1885550300
+       -1.0682278600       -1.1527093100       -0.2024763500
+       -0.7664837000       -0.9764212800        0.7344724000
+       -0.4179582600       -0.0417465100        0.6643780900
+       -0.1388244300        0.1544685000        1.6043696100
+        0.2824521400        1.0613829700        1.5986938100
+        0.5370713300        1.0998441300        2.5649700700
+        1.0316187600        1.9467650800        2.7602847100
+        1.4365686800        1.7683870800        3.6570550000
+        2.0937496300        1.0428949900        3.4526669200
+        1.6474448400        0.5546565900        2.7027101800
+        1.8927637200        1.0531112800        1.8712286300
+        1.2791037800        0.7446767300        1.1443932600
+        1.3324883600       -0.2490481600        1.0461033300
+        0.6594781700       -0.3516124300        0.3136159500
+        0.6194548200       -1.3409023600        0.1732472700
+       -0.0407771500       -1.3825772600       -0.5766573800
+       -0.1070188400       -2.3650076500       -0.7511353700
+       -0.7449753600       -2.5160425500       -1.5062512800
+       -0.7445196000       -3.5124064300       -1.5914499500
+
+  56 bead BLN model
+Sloppy quench tolerances for RMS gradient    0.0001000000
+In run   1 temperature fixed at    1.000    
+Step size and angular threshold will be adjusted for acceptance ratio       0.5000 initial values=      0.4400      0.0000
+Configuration will be reset to quench geometry
+Sampling using Boltzman weights
+Nocedal LBFGS minimization
+Number of updates before reset in LBFGS= 50
+Maximum step size=        0.6000000000
+Guess for initial diagonal elements in LBFGS=  0.1000    
+Final quench tolerance for RMS gradient    0.0000001000
+Energy difference criterion for minima=   0.0010000000
+Maximum number of iterations: sloppy quenches  2000 final quenches  2000
+Run   1:        20 steps with temperature scaled by  0.10000000E+01
+Maximum allowed energy rise during a minimisation=    0.1000000000E-09
+
+Calculating initial energy
+Qu          1 E=      -15.5947815851 steps=  123 RMS= 0.88127E-04 Markov E=    -15.59478159     t=        0.0
+Starting MC run of         20 steps
+Temperature will be multiplied by      1.00000000 at every step
+Qu          2 E=      -15.5947816254 steps=  153 RMS= 0.67204E-04 Markov E=    -15.59478159     t=        0.1
+Qu          3 E=       -7.4881444074 steps=  168 RMS= 0.88641E-04 Markov E=    -15.59478163     t=        0.1
+Qu          4 E=      -15.5947815805 steps=  148 RMS= 0.94896E-04 Markov E=    -15.59478163     t=        0.2
+Qu          5 E=      -15.5947815849 steps=  145 RMS= 0.92679E-04 Markov E=    -15.59478158     t=        0.2
+Qu          6 E=       -6.3517284518 steps=  157 RMS= 0.90097E-04 Markov E=    -15.59478158     t=        0.3
+Qu          7 E=      -15.5947815765 steps=  155 RMS= 0.76908E-04 Markov E=    -15.59478158     t=        0.3
+Qu          8 E=      -15.5947815974 steps=  145 RMS= 0.92739E-04 Markov E=    -15.59478158     t=        0.4
+Qu          9 E=      -15.5947816011 steps=  141 RMS= 0.82461E-04 Markov E=    -15.59478160     t=        0.4
+Qu         10 E=      -15.5947815974 steps=  152 RMS= 0.91542E-04 Markov E=    -15.59478160     t=        0.5
+Qu         11 E=      -15.5947815538 steps=  159 RMS= 0.93593E-04 Markov E=    -15.59478160     t=        0.6
+Qu         12 E=      -15.5947816053 steps=  159 RMS= 0.81470E-04 Markov E=    -15.59478155     t=        0.6
+Qu         13 E=       -9.2417979146 steps=  195 RMS= 0.83526E-04 Markov E=    -15.59478161     t=        0.7
+Qu         14 E=      -15.5947816037 steps=  149 RMS= 0.96044E-04 Markov E=    -15.59478161     t=        0.7
+Qu         15 E=      -15.5947815621 steps=  153 RMS= 0.79723E-04 Markov E=    -15.59478160     t=        0.8
+Qu         16 E=      -15.5947815963 steps=  146 RMS= 0.83854E-04 Markov E=    -15.59478156     t=        0.8
+Qu         17 E=       -6.0586818997 steps=  187 RMS= 0.98643E-04 Markov E=    -15.59478160     t=        0.9
+Qu         18 E=      -15.5947815246 steps=  160 RMS= 0.95060E-04 Markov E=    -15.59478160     t=        0.9
+Qu         19 E=       -6.4087971507 steps=  205 RMS= 0.98167E-04 Markov E=    -15.59478152     t=        1.0
+Qu         20 E=      -15.5947816059 steps=  154 RMS= 0.87632E-04 Markov E=    -15.59478152     t=        1.1
+Qu         21 E=       -4.1369194086 steps=  231 RMS= 0.86829E-04 Markov E=    -15.59478161     t=        1.1
+[ 1] Acceptance ratio for run=     0.00000 Step=     0.44000 Angular step factor=     0.00000 Temperature=     1.00000
+Final Quench      1 energy=      -15.5947816364 steps=   93 RMS force=      0.0000001 time=        1.16
+Final Quench      2 energy=       -9.2417979497 steps=  107 RMS force=      0.0000001 time=        1.20
+Final Quench      3 energy=       -7.4881444465 steps=   88 RMS force=      0.0000001 time=        1.22
+Final Quench      4 energy=       -6.4087971932 steps=  115 RMS force=      0.0000001 time=        1.26
+Final Quench      5 energy=       -6.3517285317 steps=  108 RMS force=      0.0000001 time=        1.30
+Final Quench      6 energy=       -6.0586819350 steps=  114 RMS force=      0.0000001 time=        1.33
+Final Quench      7 energy=       -4.1369194471 steps=  100 RMS force=      0.0000001 time=        1.36

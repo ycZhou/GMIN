@@ -1,0 +1,118 @@
+reading coordinates from file coords
+           13  atoms in the system
+Initial coordinates:
+        1.0132226417        0.3329955686        0.1812866397
+        0.7255989775       -0.7660449415        0.2388625373
+        0.7293356067       -0.2309436666       -0.7649239428
+        0.3513618941        0.8291166557       -0.5995702064
+        0.3453146118       -0.0366957540        1.0245903005
+        0.1140240770        0.9491685999        0.5064104273
+       -1.0132240213       -0.3329960305       -0.1812867552
+       -0.1140234764       -0.9491689127       -0.5064103454
+       -0.3513615244       -0.8291170821        0.5995701458
+       -0.3453152548        0.0366956843       -1.0245902691
+       -0.7255983925        0.7660457628       -0.2388624662
+       -0.7293359733        0.2309438428        0.7649237858
+        0.0000008339        0.0000002733        0.0000001488
+
+  13 LJ atoms
+------------------------------------------------------------------------------------
+S T A R T I N G   B A S I N   S A M P L I N G   R U N:
+A zero-temperature histogram-based MC sampling of the energy density of local minima
+Energy of the lowest bin    -44.32680142
+Bin width      0.20000000
+Number of bins        50
+Flatness criterion     0.20000000 percent
+Starting WL modification factor     1.37000000
+Requested number of Wang-Landau iterations                   2
+The accumulation of the density of states will be preceded with               1 steps
+Temperature range for calculation ensemble averages:    0.1000000000E-01    0.5000000000    
+Coordinate of every              1will be recorded
+-------------------------------------------------------------------------------------
+Container radius=        1.8000000000
+Sloppy quench tolerances for RMS gradient    0.0000010000
+In run   1 temperature=      0.0000 step size and angular threshold=      0.2000      0.0000 all fixed
+Configuration will be reset to quench geometry
+Sampling using Boltzman weights
+Nocedal LBFGS minimization
+Number of updates before reset in LBFGS=  4
+Maximum step size=        0.1000000000
+Guess for initial diagonal elements in LBFGS=  0.1000    
+Final quench tolerance for RMS gradient    0.0000010000
+Energy difference criterion for minima=   0.0030000000
+Maximum number of iterations: sloppy quenches  1000 final quenches   500
+Run   1: 100000000 steps with temperature scaled by  0.10000000E+01
+Maximum allowed energy rise during a minimisation=    0.1000000000E-09
+
+ lnModfac, exp   0.3148107398400336         1.370000000000000     
+ Calculating initial energy
+ Initial energy   -44.32680141953397     
+           99  quenches completed
+          199  quenches completed
+          299  quenches completed
+          399  quenches completed
+          499  quenches completed
+          599  quenches completed
+          699  quenches completed
+          799  quenches completed
+          899  quenches completed
+          999  quenches completed
+         1099  quenches completed
+         1199  quenches completed
+         1299  quenches completed
+         1399  quenches completed
+         1499  quenches completed
+         1599  quenches completed
+         1699  quenches completed
+         1799  quenches completed
+         1899  quenches completed
+         1999  quenches completed
+         2099  quenches completed
+         2199  quenches completed
+         2299  quenches completed
+         2399  quenches completed
+         2499  quenches completed
+         2599  quenches completed
+         2699  quenches completed
+         2799  quenches completed
+         2899  quenches completed
+         2999  quenches completed
+         3099  quenches completed
+         3199  quenches completed
+         3299  quenches completed
+         3399  quenches completed
+         3499  quenches completed
+         3599  quenches completed
+         3699  quenches completed
+         3799  quenches completed
+         3899  quenches completed
+         3999  quenches completed
+         4099  quenches completed
+         4199  quenches completed
+         4299  quenches completed
+         4399  quenches completed
+         4499  quenches completed
+ --===Visits histogram satisfied flatness criterion===--
+ lnModfac, exp   0.1574053699200168         1.170469991071962     
+ Updating modification factor to   0.1574053699200168     
+         4599  quenches completed
+         4699  quenches completed
+         4799  quenches completed
+         4899  quenches completed
+         4999  quenches completed
+         5099  quenches completed
+         5199  quenches completed
+         5299  quenches completed
+         5399  quenches completed
+         5499  quenches completed
+         5599  quenches completed
+         5699  quenches completed
+         5799  quenches completed
+         5899  quenches completed
+         5999  quenches completed
+         6099  quenches completed
+         6199  quenches completed
+         6299  quenches completed
+         6399  quenches completed
+         6499  quenches completed
+         6599  quenches completed

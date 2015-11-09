@@ -1,0 +1,66 @@
+120d99
+< 
+160,161c139,165
+<          PerturbedCoordinates=PerturbGeometry(PerturbedCoordinatesSave) 
+<          coords=PerturbedCoordinates
+---
+> ! jmc do something different here if charmm
+>          IF (CHRMMT) THEN
+> 
+> ! Fixed end move scheme
+>              IF (FixedEndMoveT) THEN
+> !!!                 CALL FixedEndMove(1)
+> !!!                 PerturbedCoordinates(:3*NATOMS,1) = coords(:3*NATOMS,1)
+> !!!             ELSE
+> ! step in internal coordinates
+>                 ! first make sure the internal coordinate table corresponds to the starting Cartesians 
+>                 ! (important if the previous quench failed...)
+>                 coords(:3*NATOMS,1) = PerturbedCoordinatesSave(:3*NATOMS,1)
+>                 CALL FILLICT(1)
+>                 CALL TAKESTEPCH(1)
+>                 ! new geometry is now in coords
+>                 PerturbedCoordinates(:3*NATOMS,1) = coords(:3*NATOMS,1)
+>              ELSE ! stealing FEM keyword for basin-hopping gmin IC moves...
+> ! try taking step in Cartesians; need to preserve detailed balance and explore all of configuration space.
+>                 PerturbedCoordinates = PerturbGeometry(PerturbedCoordinatesSave)
+>                 coords(1:3*NATOMS,1) = PerturbedCoordinates(1:3*NATOMS,1)
+>                 CALL FILLICT(1)
+>              ENDIF
+>          ELSE
+>             PerturbedCoordinates=PerturbGeometry(PerturbedCoordinatesSave) 
+>             coords=PerturbedCoordinates
+>          ENDIF
+> 
+> 
+611c768
+<         use commons, only:Natoms, hbins,BQMAX
+---
+>         use commons, only:Natoms, hbins,BQMAX, CHRMMT, ZSYM
+614c771
+<         integer binindex, jb,  MinimaNumber(Hbins)
+---
+>         integer binindex, jb,  MinimaNumber(Hbins), jc
+645c802
+<             !call ORDERQ4(Natoms, CurrentPointCoordinates, Q4orderparam)
+---
+>             IF (Q4T) call ORDERQ4(Natoms, CurrentPointCoordinates, Q4orderparam)
+653c810,814
+<                 write(1979,'(2G20.10)') CurrentPointEnergy, Q4orderparam
+---
+>                 IF (Q4T) THEN
+>                    write(1979,'(2G20.10)') CurrentPointEnergy, Q4orderparam
+>                 ELSE
+>                    write(1979,'(G20.10)') CurrentPointEnergy
+>                 ENDIF
+664,665c825,832
+<                 write(1979,30) (CurrentPointCoordinates(JB,1),JB=1,3*NATOMS)
+< 30              format('LA ',3F20.10)
+---
+>                 IF (CHRMMT) THEN
+>                    DO JB=1,NATOMS
+>                       write(1979,'(A,1X,3F20.10)') ZSYM(JB)(1:1),(CurrentPointCoordinates(3*(JB-1)+JC,1),JC=1,3)
+>                    ENDDO
+>                 ELSE
+>                    write(1979,30) (CurrentPointCoordinates(JB,1),JB=1,3*NATOMS)
+> 30                 format('LA ',3F20.10)
+>                 ENDIF

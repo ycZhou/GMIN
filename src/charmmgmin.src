@@ -1,0 +1,1288 @@
+C edits ic table with new values of phi/psi angles
+
+      SUBROUTINE TWISTCH(IICD,ANGLESTEP,NP)
+      USE commons
+      USE modcharmm
+##INCLUDE '/export/home/dae22/charmmcode/fcm/impnon.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/dimens.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/exfunc.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/number.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/consta.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/param.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/code.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/intcr.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/psf.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/bases.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/ctitla.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/heap.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/stack.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/stream.fcm'
+      INTEGER NP,IICD,ISLCT,OLDUSD
+      LOGICAL QADD
+      REAL*8 ANGLESTEP
+C
+      OLDUSD=LSTUSD
+      ISLCT  = ALLSTK(INTEG4(NATOM))
+C
+C make QADD true so angle step is added on to previous internal coordinate
+      QADD=.TRUE.
+      CALL EICCH(IICD,ANGLESTEP,QADD,
+     &            LENIC,INTLEN,ISTRM,TYPE,IBASE,
+     &            SEGID,RESID,NICTOT,NSEGT,RES,NATOMT,STACK(ISLCT),
+     &            HEAP(BINTCR(INTB1)),HEAP(BINTCR(INTB2)),
+     &            HEAP(BINTCR(INTT1)),HEAP(BINTCR(INTT2)),
+     &            HEAP(BINTCR(INTPIC)),HEAP(BINTCR(INTIAR)),
+     &            HEAP(BINTCR(INTJAR)),HEAP(BINTCR(INTKAR)),
+     &            HEAP(BINTCR(INTLAR)),HEAP(BINTCR(INTTAR)))
+C
+C
+      CALL FRESTK(LSTUSD-OLDUSD)
+C
+      RETURN
+      END
+C
+C  Step routine for charmm
+C
+      SUBROUTINE TAKESTEPCH(NP)
+      USE modmxatms
+      USE commons
+      USE modcharmm
+      IMPLICIT NONE
+##INCLUDE '~/charmmcode/fcm/dimens.fcm'
+##INCLUDE '~/charmmcode/fcm/psf.fcm'
+##INCLUDE '~/charmmcode/fcm/intcr.fcm'
+##INCLUDE '~/charmmcode/fcm/bases.fcm'
+##INCLUDE '~/charmmcode/fcm/heap.fcm'
+##INCLUDE '~/charmmcode/fcm/exfunc.fcm'
+C
+      DOUBLE PRECISION    P,ANGLE,DPRAND,MYRANDOM
+      INTEGER             a,ATOT,b,c,d,NP,NTEST1,NTEST2,I1,J1,IICD
+      INTEGER             RESNUM,JAR,ISEG,IRES,TOTPHIPSI,TOTSIDECHAIN
+      REAL*8 X(MXATMS),Y(MXATMS),Z(MXATMS)
+      REAL*8 XVEC(3*MXATMS),G(3*MXATMS),TWISTARRAY(MXATMS)
+      REAL*8 EP1,EP2,E,EMIN1,EMIN2
+      INTEGER IMIN1,IMIN2
+      LOGICAL L1,L2,SMARTMOVE,CHIRALFAIL
+      LOGICAL TPP(MXATMS),TS(MXATMS),TO(MXATMS)
+
+C dae set SMARTMOVE FALSE until I have it working
+      SMARTMOVE=.FALSE.
+C
+C will be sent back to 192 if too many or too few dihedrals are altered
+C as determined by CHNMIN and CHNMAX
+
+192   CONTINUE
+
+C  fill IC table with actual Cartesians
+       CALL FILLICT(NP)
+
+       IF (.NOT.SMARTMOVE) THEN
+C
+C phi/psi angles, omega and sidechain dihedrals are stored in separate lists
+C
+       b=0
+       IF (.NOT.NOPHIPSIT) THEN
+         ATOT=0
+         DO ISEG=1,NSEG
+           DO a=1,NPHIPSI(ISEG)
+             TPP(ATOT+a)=.FALSE.
+C
+C  Calculate P, the probability of twisting
+C
+             IF (REAL(a).LE.(0.5*NPHIPSI(ISEG))) THEN
+               P=CHPMAX-a*((CHPMAX-CHPMIN)/(NPHIPSI(ISEG)*0.5))
+             ELSE
+               P=CHPMIN+(a-0.5*NPHIPSI(ISEG))*((CHPMAX-CHPMIN)/(NPHIPSI(ISEG)*0.5))
+             END IF
+             IF(DEBUG) WRITE(*,*)'P phipsi = ',P
+
+             MYRANDOM=DPRAND()
+             IF (MYRANDOM.LT.P) THEN
+                IF (SMARTMOVE) THEN
+                   b=b+1
+                   TWISTARRAY(b)=ATOT+a
+                ELSE
+                   TPP(ATOT+a)=.TRUE.
+                   b=b+1
+                ENDIF
+             ENDIF
+           ENDDO
+           ATOT=ATOT+NPHIPSI(ISEG)
+         ENDDO
+         TOTPHIPSI=ATOT
+         IF(DEBUG) WRITE(*,*)'PHIPSI: TOT=',ATOT
+       ENDIF
+
+       IF (OMEGAT) THEN
+         ATOT=0
+         DO ISEG=1,NSEG
+           DO a=1,NOMEGAC(ISEG)
+             TO(ATOT+a)=.FALSE.
+C
+C  Calculate P, the probability of twisting
+C
+             IF (REAL(a).LE.(0.5*NOMEGAC(ISEG))) THEN
+               P=CHPMAX-a*((CHPMAX-CHPMIN)/(NOMEGAC(ISEG)*0.5))
+             ELSE
+               P=CHPMIN+(a-0.5*NOMEGAC(ISEG))*((CHPMAX-CHPMIN)/(NOMEGAC(ISEG)*0.5))
+             END IF
+
+             MYRANDOM=DPRAND()
+             IF (MYRANDOM.LT.P) THEN
+                IF (SMARTMOVE) THEN
+                   b=b+1
+                   TWISTARRAY(b)=ATOT+a
+                ELSE
+                   TO(ATOT+a)=.TRUE.
+                   b=b+1
+                ENDIF
+             ENDIF
+           ENDDO
+           ATOT=ATOT+NOMEGAC(ISEG)
+         ENDDO
+         IF(DEBUG) WRITE(*,*)'OMEGA: TOT=',ATOT
+       ENDIF
+         
+       ATOT=0
+       DO ISEG=1,NSEG
+         DO a=1,NSIDECHAIN(ISEG)
+           TS(ATOT+a)=.FALSE.
+C
+C  Calculate P, the probability of twisting
+C Make the probability dependent on the residue number
+C this means that all dihedrals in the same sidechain have the same P
+C
+           IICD=SIDECHAIN((ISEG-1)*NATOMS+a)
+           JAR=HEAP(BINTCR(INTJAR)+IICD-1)
+           IRES=GETRES(JAR,IBASE,NRES)
+           IRES=IRES-NICTOT(ISEG)
+           RESNUM=NICTOT(ISEG+1)-NICTOT(ISEG)
+           IF(DEBUG) WRITE(*,*)'IICD, JAR, IRES, RESNUM : ',IICD,JAR,IRES,RESNUM
+           IF (REAL(IRES).LE.(0.5*RESNUM)) THEN
+             P=CHPMAX-IRES*(CHPMAX-CHPMIN)/(RESNUM*0.5)
+           ELSE
+             P=CHPMIN+(IRES-0.5*RESNUM)*(CHPMAX-CHPMIN)/(RESNUM*0.5)
+           END IF
+           IF(DEBUG) WRITE(*,*)'P sidechain =',P
+C
+           MYRANDOM=DPRAND()
+           IF (MYRANDOM.LT.P) THEN
+             IF (SMARTMOVE) THEN
+               b=b+1
+               TWISTARRAY(b)=ATOT+a
+             ELSE
+               TS(ATOT+a)=.TRUE.
+               b=b+1
+             ENDIF
+           ENDIF
+         ENDDO
+         ATOT=ATOT+NSIDECHAIN(ISEG)
+       ENDDO
+       TOTSIDECHAIN=ATOT
+       IF(DEBUG) WRITE(*,*)'SIDECHAIN: TOT=',ATOT
+C
+       NTEST1=INT(CHNMIN*(TOTPHIPSI+TOTSIDECHAIN))
+       IF (NTEST1.LT.1) NTEST1=1
+       NTEST2=INT(CHNMAX*(TOTPHIPSI+TOTSIDECHAIN))
+C
+C      shifting b dihedrals, should be NTEST1 < b < NTEST2
+       IF (b.LT.NTEST1 .OR. b.GT.NTEST2) THEN
+         WRITE (*,'(A)') 'Too many dihedrals shifted - retrying'
+         GOTO 192
+       END IF
+
+       IF (.NOT.NOPHIPSIT) THEN
+         ATOT=0
+         DO ISEG=1,NSEG
+           DO a=1,NPHIPSI(ISEG)
+             IF (TPP(ATOT+a)) THEN
+               IICD=PHIPSI((ISEG-1)*NATOMS+a)
+               IF(DEBUG) PRINT *,'TAKESTEP> changing phipsi ',IICD
+               ANGLE=(DPRAND()-0.5)*2.0*STEP(NP)
+               CALL TWISTCH(IICD,ANGLE,NP)
+             ENDIF
+           ENDDO
+         ATOT=ATOT+a
+         ENDDO
+       ENDIF
+
+       IF (OMEGAT) THEN
+         ATOT=0
+         DO ISEG=1,NSEG
+           DO a=1,NOMEGAC(ISEG)
+             IF (TO(ATOT+a)) THEN
+               IICD=OMEGAC((ISEG-1)*NATOMS+a)
+               IF(DEBUG) PRINT *,'TAKESTEP> changing omega ',IICD
+               ANGLE=(DPRAND()-0.5)*2.0*STEP(NP)
+               CALL TWISTCH(IICD,ANGLE,NP)
+             ENDIF
+           ENDDO
+         ATOT=ATOT+a
+         ENDDO
+       ENDIF
+
+       ATOT=0
+       DO ISEG=1,NSEG
+         DO a=1,NSIDECHAIN(ISEG)
+           IF (TS(ATOT+a)) THEN
+             IICD=SIDECHAIN((ISEG-1)*NATOMS+a)
+             IF(DEBUG) PRINT *,'TAKESTEP> changing sidechain ',IICD
+             ANGLE=(DPRAND()-0.5)*2.0*STEP(NP)
+             CALL TWISTCH(IICD,ANGLE,NP)
+           ENDIF
+         ENDDO
+         ATOT=ATOT+a
+       ENDDO
+
+C
+C if SMARTMOVE
+C TWISTARRAY not used, this tries all dihedrals in order
+C
+       ELSE
+C         bs360: STARTMOVE not properly implemented 
+C            DO a=1,NPHIPSI+NSIDECHAIN
+C               c=a
+C               EMIN1=1.0D12
+C               EMIN2=1.0D12
+C               L1=.FALSE.
+C               L2=.FALSE.
+C               DO J1=1,3*natoms
+C                  XVEC(J1)=COORDS(J1,NP)
+C               END DO
+C               CALL POTENTIAL(XVEC,G,EP1,.FALSE.,.FALSE.)
+C               EP2=EP1
+C               DO d=5,180,5
+CC                 ANGLE=DBLE(d)/57.29577951D0
+C                  ANGLE=DBLE(d)
+C                  CALL TWISTCH(c,ANGLE,NP)
+Cc bs360                  CALL REBUILD(X,Y,Z,CHSEEDI,CHSEEDJ,CHSEEDK)
+C                  DO J1=1,natoms
+C                     XVEC(3*(J1-1)+1)=X(J1)
+C                     XVEC(3*(J1-1)+2)=Y(J1)
+C                     XVEC(3*(J1-1)+3)=Z(J1)
+C                  ENDDO
+C                  CALL POTENTIAL(XVEC,G,E,.FALSE.,.FALSE.)
+C                  IF (E.lt.EP1) THEN
+C                     IF (.NOT.(L1)) THEN
+CC                       CALL adump(XVEC)
+CC                        WRITE (*,*) 'd,E= ',d,E
+C                     END IF
+C                     L1=.TRUE.
+C                  END IF
+C                  EP1=E
+C                  IF (L1) THEN
+C                     IF (E.LT.EMIN1) THEN
+C                        EMIN1=E
+C                        IMIN1=d
+C                     END IF
+C                  END IF
+C                  CALL TWISTCH(c,-2.0D0*ANGLE,NP)
+Cc bs360                  CALL REBUILD(X,Y,Z,CHSEEDI,CHSEEDJ,CHSEEDK)
+C                  DO J1=1,natoms
+C                     XVEC(3*(J1-1)+1)=X(J1)
+C                     XVEC(3*(J1-1)+2)=Y(J1)
+C                     XVEC(3*(J1-1)+3)=Z(J1)
+C                  ENDDO
+C                  CALL POTENTIAL(XVEC,G,E,.FALSE.,.FALSE.)
+C                  IF (E.lt.EP2) L2=.TRUE.
+C                  EP2=E
+C                  IF (L2) THEN
+C                     IF (E.LT.EMIN2) THEN
+C                        EMIN2=E
+C                        IMIN2=360-d
+C                     END IF
+C                  END IF
+CC                 CALL TWIST(DATOM1(c),DATOM2(c),ANGLE,NP)
+C                  CALL TWISTCH(c,ANGLE,NP)
+C               END DO
+C               IF (EMIN2.LT.EMIN1) IMIN1=IMIN2
+C               WRITE (*,*) 'Rotating dihedral ',c,' by ',IMIN1,' degrees'
+CC              ANGLE=DBLE(IMIN1)/57.29577951D0
+C               ANGLE=DBLE(d)
+C               CALL TWISTCH(c,ANGLE,NP)
+Cc bs360               CALL REBUILD(X,Y,Z,CHSEEDI,CHSEEDJ,CHSEEDK)
+C            END DO
+C
+C
+CC         WRITE (*,'(A,I3,A,I3)') 'Shifting ',b,' dihedrals out of ',NDIHEDRALS
+CC
+      END IF
+C
+C  rebuild cartesians from new ic
+C
+      CALL REBUILD(X,Y,Z,NP)
+C
+      DO I1=1,NATOMS
+        COORDS(3*(I1-1)+1,NP)=X(I1)
+        COORDS(3*(I1-1)+2,NP)=Y(I1)
+        COORDS(3*(I1-1)+3,NP)=Z(I1)
+      ENDDO
+
+      RETURN
+
+      END
+
+C     initialize vectors SEGMENTT and NSEGATOMS for rigid body 
+C     moves of segments
+      SUBROUTINE CHSETSEG 
+      USE commons
+      USE modcharmm
+##INCLUDE '~/charmm_fcm/impnon.fcm'
+##INCLUDE '~/charmm_fcm/consta.fcm'
+##INCLUDE '~/charmm_fcm/dimens.fcm'
+##INCLUDE '~/charmm_fcm/psf.fcm'
+
+      INTEGER I,J1,ISEG
+
+      ALLOCATE(SEGMENTT(NSEG))
+      ALLOCATE(NSEGATOMS(NSEG))     
+
+      DO ISEG=1,NSEG
+        SEGMENTT(ISEG)=.FALSE.
+      ENDDO
+      OPEN(1,FILE='segments.tomove',STATUS='OLD')
+      DO 
+        READ(1,*,END=40) J1
+        SEGMENTT(J1)=.TRUE.
+      ENDDO
+40    CONTINUE
+      CLOSE(1)
+
+      DO ISEG=2,NSEG+1
+        NSEGATOMS(ISEG-1)=IBASE(NICTOT(ISEG)+1)-IBASE(NICTOT(ISEG-1)+1)
+      ENDDO
+      DO ISEG=1,NSEG
+        WRITE(*,'(A,I4,I6)')'SEG-NR,NSEGATOMS : ',ISEG,NSEGATOMS(ISEG)
+      ENDDO
+
+      RETURN
+      END
+
+      SUBROUTINE NEWCONF(NP,NR,BESTCOORDS)
+      USE commons
+      USE modcharmm
+c     new starting configuration by arbitrary rigid-body motion
+c     of the segments determined in 'segments.tomove'
+##INCLUDE '~/charmm_fcm/impnon.fcm'
+##INCLUDE '~/charmm_fcm/consta.fcm'
+##INCLUDE '~/charmm_fcm/dimens.fcm'
+C##INCLUDE '~/charmm_fcm/exfunc.fcm'
+C##INCLUDE '~/charmm_fcm/number.fcm'
+##INCLUDE '~/charmm_fcm/psf.fcm'
+      INTEGER NP,NR
+
+      INTEGER I,J1,JS,NA,IAF,IAL
+      DOUBLE PRECISION  DROT,DTRANS,V(3),DPRAND
+      DOUBLE PRECISION  DCOORDS(1:3*NATOMS),BESTCOORDS(1:3*NATOMS,NP)
+      DOUBLE PRECISION  DIFFX,DIFFY,DIFFZ,MAXX,MAXY,MAXZ,SIGNX,SIGNY,SIGNZ
+      REAL*8 T,R,S,RN(3),U(3,3),XP,YP,ZP,MT
+      REAL*8  X(NATOMS), Y(NATOMS), Z(NATOMS)
+      CHARACTER(LEN=6) :: CNR
+      LOGICAL OK
+
+      WRITE(CNR,'(I6)') NR-1
+      DCOORDS(1:3*NATOMS)=BESTCOORDS(1:3*NATOMS,NP)
+      CALL CHARMMDUMP(DCOORDS,'best.'//TRIM(ADJUSTL(CNR)))
+
+      DO J1=1,NATOMS
+        X(J1)=COORDS(3*(J1-1)+1,NP)
+        Y(J1)=COORDS(3*(J1-1)+2,NP)
+        Z(J1)=COORDS(3*(J1-1)+3,NP)
+C         X(J1)=BESTCOORDS(3*(J1-1)+1,NP)
+C         Y(J1)=BESTCOORDS(3*(J1-1)+2,NP)
+C         Z(J1)=BESTCOORDS(3*(J1-1)+3,NP)
+      ENDDO
+
+      DTRANS=10.D0
+      DROT=360.D0
+      NA=0
+      DO JS=1,NSEG
+      IF(SEGMENTT(JS)) THEN
+C       rotation
+        T = DPRAND()*TWOPI
+        R = (DPRAND()-0.5)*PI
+        S = SIN(T)
+        RN(1) = S*COS(R)
+        RN(2) = S*SIN(R)
+        RN(3) = COS(T)
+        DROT = (2.0*DPRAND() - 1.0)*DROT
+        WRITE(*,'(A,I4,A,F8.3,A)') 'NEWCONF> rigid rotation of segment ',JS,' by ',DROT,' degree'
+        CALL FNDU(U,RN,DROT,OK)
+        IF (.NOT. OK) PRINT *,'NEWCONF> no U matrix found' 
+C       translation
+100     V(1) = 2.D0*DPRAND() - 1.D0
+        V(2) = 2.D0*DPRAND() - 1.D0
+        V(3) = 2.D0*DPRAND() - 1.D0
+        IF (V(1)*V(1)+V(2)*V(2)+V(3)*V(3) .GT. 1.D0) GOTO 100
+        V(1) = V(1)*DTRANS
+        V(2) = V(2)*DTRANS
+        V(3) = V(3)*DTRANS
+        WRITE(*,'(A,I4,A,3F8.4,A)') 'NEWCONF> rigid translation of segment ',JS,' in x,y,z: ',V(1),V(2),V(3), ' A'
+
+        IAF=NA+1
+        IAL=NA+NSEGATOMS(JS)
+        XP = 0.0
+        YP = 0.0
+        ZP = 0.0
+        MT = 0.0
+        DO J1=IAF,IAL
+          XP = XP + AMASS(J1)*X(J1)
+          YP = YP + AMASS(J1)*Y(J1)
+          ZP = ZP + AMASS(J1)*Z(J1)
+          MT = MT + AMASS(J1)
+        ENDDO
+        XP = XP / MT
+        YP = YP / MT
+        ZP = ZP / MT
+        DO J1 = IAF, IAL
+           CALL MYAPPLYU(U,X,Y,Z,J1,XP,YP,ZP)
+        ENDDO
+        DO J1 = IAF, IAL
+          COORDS(3*(J1-1)+1,NP)=X(J1)+V(1)
+          COORDS(3*(J1-1)+2,NP)=Y(J1)+V(2)
+          COORDS(3*(J1-1)+3,NP)=Z(J1)+V(3)
+        ENDDO
+      ENDIF
+      NA=NA+NSEGATOMS(JS)
+      ENDDO
+C
+C     check whether all molecules are within a cubic box of diameter
+C     NCWALL Angstrom. If not, put them into the box.
+C
+      XP=0.0D0
+      YP=0.0D0
+      ZP=0.0D0
+      DO I=1,NATOMS
+         XP=XP+COORDS(3*(I-1)+1)
+         YP=YP+COORDS(3*(I-1)+2)
+         ZP=ZP+COORDS(3*(I-1)+3)
+      ENDDO
+      XP=XP/NATOMS
+      YP=YP/NATOMS
+      ZP=ZP/NATOMS
+      DO I=1,NATOMS
+         COORDS(3*(I-1)+1)=COORDS(3*(I-1)+1)-XP
+         COORDS(3*(I-1)+2)=COORDS(3*(I-1)+2)-YP
+         COORDS(3*(I-1)+3)=COORDS(3*(I-1)+3)-ZP
+      ENDDO
+C
+      NA=0
+      DO JS=1,NSEG 
+        SIGNX=1.D0
+        SIGNY=1.D0
+        SIGNZ=1.D0        
+        MAXX=0.D0
+        MAXY=0.D0
+        MAXZ=0.D0     
+        DIFFX=0.D0
+        DIFFY=0.D0
+        DIFFZ=0.D0
+        IAF=NA+1
+        IAL=NA+NSEGATOMS(JS)      
+        DO I=IAF,IAL
+          IF(DABS(COORDS(3*(I-1)+1,NP)).GT.MAXX) THEN 
+            MAXX=DABS(COORDS(3*(I-1)+1,NP))
+            SIGNX=DSIGN(1.D0,COORDS(3*(I-1)+1,NP))
+          ENDIF
+          IF(DABS(COORDS(3*(I-1)+2,NP)).GT.MAXY) THEN
+            MAXY=DABS(COORDS(3*(I-2)+2,NP))
+            SIGNY=DSIGN(1.D0,COORDS(3*(I-1)+2,NP))
+          ENDIF
+          IF(DABS(COORDS(3*(I-1)+3,NP)).GT.MAXZ) THEN
+            MAXZ=DABS(COORDS(3*(I-3)+3,NP))
+            SIGNZ=DSIGN(1.D0,COORDS(3*(I-1)+3,NP))
+          ENDIF
+        ENDDO
+        IF(MAXX.GT.NCWALL/2.D0) DIFFX=SIGNX*(MAXX-NCWALL/2.D0) 
+        IF(MAXY.GT.NCWALL/2.D0) DIFFY=SIGNY*(MAXY-NCWALL/2.D0)
+        IF(MAXZ.GT.NCWALL/2.D0) DIFFZ=SIGNZ*(MAXZ-NCWALL/2.D0)
+        WRITE(*,'(A,I4)')'NEWCONF> diffx,diffy,diffz for segment: ',JS
+        WRITE(*,*) SIGNX,MAXX,NCWALL/2.D0,DIFFX
+        WRITE(*,*) SIGNY,MAXY,NCWALL/2.D0,DIFFY
+        WRITE(*,*) SIGNZ,MAXZ,NCWALL/2.D0,DIFFZ
+        DO I=IAF,IAL
+          COORDS(3*(I-1)+1)=COORDS(3*(I-1)+1)-DIFFX
+          COORDS(3*(I-1)+2)=COORDS(3*(I-1)+2)-DIFFY
+          COORDS(3*(I-1)+3)=COORDS(3*(I-1)+3)-DIFFZ
+        ENDDO
+        NA=NA+NSEGATOMS(JS)
+      ENDDO
+              
+
+C
+      WRITE(CNR,'(I6)') NR
+      DCOORDS(1:3*NATOMS)=COORDS(1:3*NATOMS,NP)
+      CALL CHARMMDUMP(DCOORDS,'newconf.'//TRIM(ADJUSTL(CNR)))
+C
+      RETURN
+      END
+
+
+
+
+      SUBROUTINE MKRIGIDTRANS(NP)
+      USE commons
+      USE modcharmm
+c     rigid body translation of the segments determined in
+c     'segments.tomove'
+##INCLUDE '~/charmm_fcm/impnon.fcm'
+##INCLUDE '~/charmm_fcm/consta.fcm'
+##INCLUDE '~/charmm_fcm/dimens.fcm'
+C##INCLUDE '~/charmm_fcm/exfunc.fcm'
+C##INCLUDE '~/charmm_fcm/number.fcm'
+##INCLUDE '~/charmm_fcm/psf.fcm'
+
+      INTEGER NP
+
+      INTEGER J1,JS,NA,IAF,IAL
+      DOUBLE PRECISION  P,DTRANS,V(3),DPRAND
+
+      NA=0
+      DO JS=1,NSEG
+      IF(SEGMENTT(JS)) THEN
+        P=DPRAND()
+        IF(P.LE.PTRANS) THEN
+C         rigid translation of segment JS
+100       V(1) = 2.D0*DPRAND() - 1.D0
+          V(2) = 2.D0*DPRAND() - 1.D0
+          V(3) = 2.D0*DPRAND() - 1.D0
+          IF (V(1)*V(1)+V(2)*V(2)+V(3)*V(3) .GT. 1.D0) GOTO 100
+C          DTRANS = DPRAND() * TRANSMAX
+          DTRANS = TRANSMAX
+          V(1) = V(1)*DTRANS        
+          V(2) = V(2)*DTRANS        
+          V(3) = V(3)*DTRANS        
+          IF(DEBUG) WRITE(*,'(A,I4,A,3F8.4,A)') 
+     &    'MKRIGIDTRANS> rigid translation of segment ',JS,' in x,y,z: ',V(1),V(2),V(3), ' A'
+C         apply to all atoms of segment JS
+          IAF=NA+1
+          IAL=NA+NSEGATOMS(JS) 
+          DO J1=IAF,IAL
+            COORDS(3*(J1-1)+1,NP)=COORDS(3*(J1-1)+1,NP)+V(1)        
+            COORDS(3*(J1-1)+2,NP)=COORDS(3*(J1-1)+2,NP)+V(2)        
+            COORDS(3*(J1-1)+3,NP)=COORDS(3*(J1-1)+3,NP)+V(3)        
+          ENDDO
+        ENDIF
+      ENDIF   
+      NA=NA+NSEGATOMS(JS)
+      ENDDO
+C
+      RETURN
+      END 
+ 
+      SUBROUTINE MKRIGIDROT(NP)
+c     rigid body rotation of the segments determined in
+c     'segments.tomove'
+
+      USE commons
+      USE modcharmm
+##INCLUDE '~/charmm_fcm/impnon.fcm'
+##INCLUDE '~/charmm_fcm/consta.fcm'
+##INCLUDE '~/charmm_fcm/dimens.fcm'
+C##INCLUDE '~/charmm_fcm/exfunc.fcm'
+C##INCLUDE '~/charmm_fcm/number.fcm'
+##INCLUDE '~/charmm_fcm/psf.fcm'
+
+      INTEGER NP
+
+      INTEGER I,J1,JS,NA,IAF,IAL
+      DOUBLE PRECISION  P, DPRAND
+      REAL*8 T,R,S,RN(3),U(3,3),XP,YP,ZP,MT
+      REAL*8  X(NATOMS), Y(NATOMS), Z(NATOMS), DROT
+      LOGICAL OK
+ 
+      DO J1=1,NATOMS
+        X(J1)=COORDS(3*(J1-1)+1,NP)
+        Y(J1)=COORDS(3*(J1-1)+2,NP)
+        Z(J1)=COORDS(3*(J1-1)+3,NP)
+      ENDDO
+
+      NA=0
+      DO JS=1,NSEG
+      IF(SEGMENTT(JS)) THEN
+        P=DPRAND()
+        IF(P.LE.PROT) THEN
+C         rigid rotation of segment JS          
+          T = DPRAND()*TWOPI
+          R = (DPRAND()-0.5)*PI
+          S = SIN(T)
+          RN(1) = S*COS(R)
+          RN(2) = S*SIN(R)
+          RN(3) = COS(T)
+          DROT = (2.0*DPRAND() - 1.0)*ROTMAX
+          IF(DEBUG) WRITE(*,'(A,I4,A,F8.3,A)') 'MKRIGIDROT> rigid rotation of segment ',JS,' by ',DROT,' degree'
+          CALL FNDU(U,RN,DROT,OK)
+          IF (.NOT. OK) PRINT *,'MKRIGIDROT> no U matrix found'
+C
+          IAF=NA+1
+          IAL=NA+NSEGATOMS(JS)
+          XP = 0.0
+          YP = 0.0
+          ZP = 0.0
+          MT = 0.0
+          DO J1=IAF,IAL
+            XP = XP + AMASS(J1)*X(J1)
+            YP = YP + AMASS(J1)*Y(J1)
+            ZP = ZP + AMASS(J1)*Z(J1)
+            MT = MT + AMASS(J1)        
+          ENDDO
+          XP = XP / MT
+          YP = YP / MT
+          ZP = ZP / MT   
+          DO J1 = IAF, IAL
+            CALL MYAPPLYU(U,X,Y,Z,J1,XP,YP,ZP)
+          ENDDO
+        ENDIF
+      ENDIF
+      NA=NA+NSEGATOMS(JS)
+      ENDDO
+C
+      DO J1=1,NATOMS
+        COORDS(3*(J1-1)+1,NP)=X(J1)
+        COORDS(3*(J1-1)+2,NP)=Y(J1)
+        COORDS(3*(J1-1)+3,NP)=Z(J1)
+      ENDDO
+C
+      RETURN
+      END
+
+      SUBROUTINE MYAPPLYU(U,X,Y,Z,IATOM,XCEN,YCEN,ZCEN)
+C
+C       Apply the rotation matrix to the coordinates of atom IATOM around
+C       (XCEN YCEN ZCEN).
+C
+C       Aaron R. Dinner
+C
+##INCLUDE '~/charmm_fcm/impnon.fcm'
+C
+C       Passed Variables
+C
+        INTEGER IATOM
+        REAL*8 X(*), Y(*), Z(*)
+        REAL*8 U(3,3), XCEN, YCEN, ZCEN
+C
+C       Local Variables
+C
+        INTEGER I
+        REAL*8 XV, YV, ZV
+
+        XV = X(IATOM) - XCEN
+        YV = Y(IATOM) - YCEN
+        ZV = Z(IATOM) - ZCEN
+        X(IATOM) = XCEN + U(1,1)*XV+U(1,2)*YV+U(1,3)*ZV
+        Y(IATOM) = YCEN + U(2,1)*XV+U(2,2)*YV+U(2,3)*ZV
+        Z(IATOM) = ZCEN + U(3,1)*XV+U(3,2)*YV+U(3,3)*ZV
+
+        RETURN
+      END
+
+
+C rebuilds molecule once all dihedrals have been changed
+C
+      SUBROUTINE REBUILD(X,Y,Z,NP)
+C
+      USE commons
+      USE modcharmm
+C
+##INCLUDE '/export/home/dae22/charmmcode/fcm/impnon.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/dimens.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/exfunc.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/number.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/consta.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/param.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/code.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/intcr.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/psf.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/bases.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/ctitla.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/heap.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/stack.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/stream.fcm'
+C
+      INTEGER NP
+      REAL*8 X(MAXAIM),Y(MAXAIM),Z(MAXAIM)
+      INTEGER ISEG,IRES,I1,I,J,K,J1,OLDUSD,IAF,IAL
+      INTEGER MYGETATN
+      EXTERNAL MYGETATN
+C
+      OLDUSD=LSTUSD
+
+      DO ISEG=1,NSEG
+        IRES=NICTOT(ISEG)+1
+10      I=MYGETATN(ISEG,IRES,'N',TYPE,IBASE,NICTOT,NSEG)
+        J=MYGETATN(ISEG,IRES,'CA',TYPE,IBASE,NICTOT,NSEG)
+        K=MYGETATN(ISEG,IRES,'C',TYPE,IBASE,NICTOT,NSEG)
+        IF(DEBUG) PRINT *,'REBUILD> SEED I,J,K = ',I,J,K
+        IF(I*J*K.LE.0) THEN
+          IRES=NICTOT(ISEG)+2
+          GOTO 10
+        ENDIF 
+
+        IAF=IBASE(NICTOT(ISEG)+1)+1
+        IAL=IBASE(NICTOT(ISEG+1)+1)
+        DO I1=IAF,IAL
+          IF((I1.EQ.I).OR.(I1.EQ.J).OR.(I1.EQ.K)) THEN
+            X(I1)=COORDS(3*(I1-1)+1,NP)
+            Y(I1)=COORDS(3*(I1-1)+2,NP)
+            Z(I1)=COORDS(3*(I1-1)+3,NP)
+          ELSE
+            X(I1)=ANUM
+            Y(I1)=ANUM
+            Z(I1)=ANUM
+          ENDIF
+        ENDDO
+      ENDDO
+
+      CALL BILDC(1,LENIC,X,Y,Z,
+     &           HEAP(BINTCR(INTB1)),HEAP(BINTCR(INTB2)),
+     &           HEAP(BINTCR(INTT1)),HEAP(BINTCR(INTT2)),
+     &           HEAP(BINTCR(INTPIC)),HEAP(BINTCR(INTIAR)),
+     &           HEAP(BINTCR(INTJAR)),HEAP(BINTCR(INTKAR)),
+     &           HEAP(BINTCR(INTLAR)),HEAP(BINTCR(INTTAR)),
+     &           NATOM)
+
+      CALL FRESTK(LSTUSD - OLDUSD)
+
+      IF(DEBUG) THEN
+        print *,'REBUILD> new cartesians are:'
+        do I=1,NATOM
+          write(*,'(3F15.5)')X(I),Y(I),Z(I)
+        enddo
+      ENDIF
+
+      RETURN
+      END
+
+      INTEGER FUNCTION MYGETATN(ISEG,IRES,ATOM,TYPE,IBASE,NICTOT,NSEG)
+C-----------------------------------------------------------------------
+C     THIS FUNCTION RETURNS THE ATOM NUMBER FOR THE ATOM NAMED BY ITS
+C     SEGID, RESIDE, AND IUPAC NAME.
+C
+C     Author: David States
+
+##INCLUDE '/export/home/dae22/charmmcode/fcm/impnon.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/stream.fcm'
+      CHARACTER*(*) TYPE(*)
+      INTEGER NICTOT(*)
+      INTEGER IBASE(*)
+      INTEGER NSEG
+      INTEGER ISEG,IRES
+      CHARACTER*(*) ATOM
+      INTEGER ISTART,ISTOP,IATOM
+      
+      IF ((ISEG.LT.1).OR.(ISEG.GT.NSEG)) GOTO 999
+C
+      ISTART=NICTOT(ISEG)+1
+      ISTOP=NICTOT(ISEG+1)
+      IF ((IRES.LT.ISTART).OR.(IRES.GT.ISTOP)) GOTO 998
+C
+C     GET THE ATOM NUMBER.
+C
+      IATOM=IBASE(IRES)+1
+      ISTOP=IBASE(IRES+1)
+      IF (IATOM.GT.ISTOP) GOTO 997
+      DO WHILE (TYPE(IATOM).NE.ATOM)
+         IATOM=IATOM+1
+         IF (IATOM.GT.ISTOP) GOTO 997
+      ENDDO
+      MYGETATN=IATOM
+      RETURN
+  999 IF(WRNLEV.GE.2) WRITE(OUTU,2000) 'SEGMENT',
+     $     ISEG,IRES,ATOM(1:idleng)
+      MYGETATN=-1
+      RETURN
+  998 IF(WRNLEV.GE.2) WRITE(OUTU,2000) 'RESIDUE',
+     $     ISEG,IRES,ATOM(1:idleng)
+      MYGETATN=-1
+      RETURN
+  997 IF(WRNLEV.GE.2) WRITE(OUTU,2000) 'ATOM',
+     $     ISEG,IRES,ATOM(1:idleng)
+      MYGETATN=-1
+      RETURN
+ 2000 FORMAT(' *****  WARNING  ***** GETATN could not find the ',A,
+     1       ' SEG="',I4,'" RES="',I4,'" ATOM="',A,'"')
+      END
+
+
+C
+C
+CHARMM Element source/manip/intcor.src 1.1
+      SUBROUTINE EICCH(IICD,ACOM,QADD,LENIC,INTLEN,IUNIC,
+     &  TYPE,IBASE,SEGID,RESID,NICTOT,NSEG,RES,NATOM,ISLCT,
+     &  B1IC,B2IC,T1IC,T2IC,PIC,IAR,JAR,KAR,LAR,TAR)
+C
+C     EDIT INTERNAL COORDINATES
+C
+C     By Bernard R. Brooks    1982
+C
+C dae Modified EDITIC 
+C WRD = DIST, ANGL, or DIHE 
+C I,J,K,L are atom numbers passed from ICSTEP
+C ACOM is size of step in required internal coordinate  
+C QADD is logical flag that tells EDITIC to add ACOM to 
+C existing IC table entry
+C 
+      USE commons
+##INCLUDE '~/charmm_fcm/impnon.fcm'
+##INCLUDE '~/charmm_fcm/dimens.fcm'
+##INCLUDE '~/charmm_fcm/exfunc.fcm'
+C
+      INTEGER LENIC,INTLEN,IUNIC, IICD
+      INTEGER IBASE(*),NICTOT(*)
+      INTEGER NSEG,NATOM,ISLCT(*)
+      REAL*8 B1IC(*),B2IC(*),T1IC(*),T2IC(*),PIC(*)
+      INTEGER  IAR(*),JAR(*),KAR(*),LAR(*)
+      LOGICAL TAR(*)
+
+##IF C31
+      CHARACTER*8 SEGID(*),RESID(*),TYPE(*),RES(*)
+##ELSE
+##IF C29
+      CHARACTER*4 SEGID(*),RESID(*),TYPE(*),RES(*)
+##ELSE
+##ERROR 'Unrecognized version of CHARMM'
+##ENDIF
+##ENDIF
+
+
+
+C
+##INCLUDE '~/charmm_fcm/comand.fcm'
+##INCLUDE '~/charmm_fcm/stream.fcm'
+C
+      REAL*8 ACOM
+      INTEGER NOLD,NNEW,I,J,IIC,IVL,K,L
+      INTEGER QAT(4),NQAT
+      INTEGER II,INC,ISTART,MARK
+C
+      CHARACTER*4 WRD
+      LOGICAL T
+      LOGICAL FOUND,KILL,EOF,OK,LPOS,LNEG,DONE
+      LOGICAL QADD
+C
+C
+      EOF=.FALSE.
+      NOLD=LENIC
+      NNEW=0
+      KILL=.FALSE.
+      DONE=.FALSE.
+C
+      DO WHILE(.NOT.DONE)
+C-----------------------------------------------------------------------
+C dihedrals called by IICD, the ic table index. So a simple update should
+C work
+C        ELSE IF(WRD.EQ.'PHI ') THEN
+           IF(QADD) THEN
+             IF(DEBUG) WRITE(*,'(A,F15.5,A,F15.5)') 'EICCH> old= ',PIC(IICD),'  new= ',PIC(IICD)+ACOM
+             PIC(IICD)=PIC(IICD)+ACOM
+           ELSE
+             PIC(IICD)=ACOM
+           ENDIF
+           IF(PIC(IICD).LT.-180.0) PIC(IICD)=PIC(IICD)+360.0
+           IF(PIC(IICD).LT.-180.0) PIC(IICD)=PIC(IICD)+360.0
+C
+         IF(LENIC.GE.INTLEN) THEN
+           CALL WRNDIE(-4,'<EDITIC>',
+     &  'Too many IC edits (out of memory), split the IC EDIT command')
+           DONE=.TRUE.
+         ENDIF
+C
+      DONE=.TRUE.
+      ENDDO
+C
+C process-end-edit
+            DO II=1,NNEW
+               INC=II+NOLD
+               I=IAR(INC)
+               J=JAR(INC)
+               IF(TAR(INC)) J=KAR(INC)
+               IF(B2IC(INC).GT.0.001) GOTO 430
+               DO 420 IIC=1,LENIC
+               IF(IIC.EQ.INC) GOTO 420
+               IF(IAR(IIC).EQ.I.AND.JAR(IIC).EQ.J.AND..NOT.TAR(IIC))
+     &                                  GOTO 415
+               IF(IAR(IIC).EQ.J.AND.JAR(IIC).EQ.I.AND..NOT.TAR(IIC))
+     &                                  GOTO 415
+               IF(IAR(IIC).EQ.I.AND.KAR(IIC).EQ.J.AND.TAR(IIC)) GOTO 415
+               IF(IAR(IIC).EQ.J.AND.KAR(IIC).EQ.I.AND.TAR(IIC)) GOTO 415
+               IF(LAR(IIC).EQ.I.AND.KAR(IIC).EQ.J) GOTO 417
+               IF(LAR(IIC).EQ.J.AND.KAR(IIC).EQ.I) GOTO 417
+               GOTO 420
+ 415           IF(B2IC(IIC).LE.0.001) GOTO 420
+               B2IC(INC)=B2IC(IIC)
+               GOTO 420
+ 417           IF(B1IC(IIC).LE.0.001) GOTO 420
+               B2IC(INC)=B1IC(IIC)
+ 420           CONTINUE
+               IF(B2IC(INC).LE.0.001) KILL=.TRUE.
+ 430           CONTINUE
+C
+               K=KAR(INC)
+               L=LAR(INC)
+               IF(B1IC(INC).GT.0.001) GOTO 460
+               DO 450 IIC=1,LENIC
+               IF(IIC.EQ.INC) GOTO 450
+               IF(IAR(IIC).EQ.K.AND.JAR(IIC).EQ.L.AND..NOT.TAR(IIC))
+     &                                  GOTO 445
+               IF(IAR(IIC).EQ.L.AND.JAR(IIC).EQ.K.AND..NOT.TAR(IIC))
+     &                                  GOTO 445
+               IF(IAR(IIC).EQ.K.AND.KAR(IIC).EQ.L.AND.TAR(IIC)) GOTO 445
+               IF(IAR(IIC).EQ.L.AND.KAR(IIC).EQ.K.AND.TAR(IIC)) GOTO 445
+               IF(LAR(IIC).EQ.K.AND.KAR(IIC).EQ.L) GOTO 447
+               IF(LAR(IIC).EQ.L.AND.KAR(IIC).EQ.K) GOTO 447
+               GOTO 450
+ 445           IF(B2IC(IIC).LE.0.001) GOTO 450
+               B1IC(INC)=B2IC(IIC)
+               GOTO 450
+ 447           IF(B1IC(IIC).LE.0.001) GOTO 450
+               B1IC(INC)=B1IC(IIC)
+ 450           CONTINUE
+               IF(B1IC(INC).LE.0.001) KILL=.TRUE.
+ 460           CONTINUE
+C
+               IF(TAR(INC)) K=JAR(INC)
+               IF(T2IC(INC).GT.0.001) GOTO 500
+               DO 490 IIC=1,LENIC
+               IF(IIC.EQ.INC) GOTO 490
+C
+               IF(KAR(IIC).NE.J) GOTO 470
+               IF(LAR(IIC).EQ.I.AND.JAR(IIC).EQ.K) GOTO 487
+               IF(LAR(IIC).EQ.K.AND.JAR(IIC).EQ.I) GOTO 487
+               IF(IAR(IIC).EQ.I.AND.JAR(IIC).EQ.K.AND.TAR(IIC)) GOTO 485
+               IF(IAR(IIC).EQ.K.AND.JAR(IIC).EQ.I.AND.TAR(IIC)) GOTO 485
+               GOTO 490
+ 470           IF(JAR(IIC).NE.J.OR..NOT.TAR(IIC)) GOTO 490
+               IF(IAR(IIC).EQ.I.AND.KAR(IIC).EQ.K) GOTO 485
+               IF(IAR(IIC).EQ.K.AND.KAR(IIC).EQ.I) GOTO 485
+               GOTO 490
+ 485           IF(T2IC(IIC).LE.0.001) GOTO 490
+               T2IC(INC)=T2IC(IIC)
+               GOTO 490
+ 487           IF(T1IC(IIC).LE.0.001) GOTO 490
+               T2IC(INC)=T1IC(IIC)
+ 490           CONTINUE
+               IF(T2IC(INC).LE.0.001) KILL=.TRUE.
+ 500           CONTINUE
+C
+               I=LAR(INC)
+               J=KAR(INC)
+               K=JAR(INC)
+               IF(T1IC(INC).GT.0.001) GOTO 540
+               DO 530 IIC=1,LENIC
+               IF(IIC.EQ.INC) GOTO 530
+C
+               IF(KAR(IIC).NE.J) GOTO 510
+               IF(LAR(IIC).EQ.I.AND.JAR(IIC).EQ.K) GOTO 527
+               IF(LAR(IIC).EQ.K.AND.JAR(IIC).EQ.I) GOTO 527
+               IF(IAR(IIC).EQ.I.AND.JAR(IIC).EQ.K.AND.TAR(IIC)) GOTO 525
+               IF(IAR(IIC).EQ.K.AND.JAR(IIC).EQ.I.AND.TAR(IIC)) GOTO 525
+               GOTO 530
+ 510           IF(JAR(IIC).NE.J.OR..NOT.TAR(IIC)) GOTO 530
+               IF(IAR(IIC).EQ.I.AND.KAR(IIC).EQ.K) GOTO 525
+               IF(IAR(IIC).EQ.K.AND.KAR(IIC).EQ.I) GOTO 525
+               GOTO 530
+ 525           IF(T2IC(IIC).LE.0.001) GOTO 530
+               T1IC(INC)=T2IC(IIC)
+               GOTO 530
+ 527           IF(T1IC(IIC).LE.0.001) GOTO 530
+               T1IC(INC)=T1IC(IIC)
+ 530           CONTINUE
+               IF(T1IC(INC).LE.0.001) KILL=.TRUE.
+ 540           CONTINUE
+            ENDDO
+C
+            IF(KILL .AND. WRNLEV.GE.2) WRITE(OUTU,905)
+ 905        FORMAT(/,15X,'ERROR IN EDIT TERMINATION. SOME NEW INTERNAL',
+     2        ' COORDINATES UNDEFINED. CONTINUING'/)
+            ISTART=NOLD+1
+            IF(ISTART.GT.LENIC) RETURN
+            IF(PRNLEV.GE.2) WRITE(OUTU,605)
+ 605        FORMAT(/15X,'EDIT COMPLETE. NEW COORDINATES ARE GIVEN.'/)
+C
+            CALL WRITIC(ISTART,LENIC,-1,0,OUTU,
+     4        B1IC,B2IC,T1IC,T2IC,PIC,IAR,JAR,KAR,LAR,TAR)
+C
+      RETURN
+Cyw
+ 375  FORMAT(15X,'DIHEDRAL NOT FOUND. ADDING NEW IC',I5)
+ 925  FORMAT(/15X,'**** ERROR. ATOM OF INTERNAL COORDINATE DOES NOT',
+     2  ' EXIST. IGNORING ****'/)
+C
+      END
+C
+C
+C FILLIC, which fills ic table from cartesians
+C
+      SUBROUTINE FILLICT(NP)
+      USE commons
+      USE modcharmm
+      IMPLICIT NONE
+##INCLUDE '/export/home/dae22/charmmcode/fcm/dimens.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/exfunc.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/number.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/consta.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/param.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/code.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/intcr.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/psf.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/bases.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/ctitla.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/heap.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/stack.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/stream.fcm'
+C
+      REAL*8 X(MAXAIM), Y(MAXAIM), Z(MAXAIM)
+      INTEGER OLDUSD,I1,NP
+      LOGICAL LAPPE,LPRES,CHIRALFAIL
+C
+      OLDUSD=LSTUSD
+C
+C set append and preserve flags in IC FILL command to false
+       LAPPE = .FALSE.
+       LPRES = .FALSE.
+C
+      DO I1=1,NATOMS
+        X(I1)=COORDS(3*(I1-1)+1,NP)
+        Y(I1)=COORDS(3*(I1-1)+2,NP)
+        Z(I1)=COORDS(3*(I1-1)+3,NP)
+      ENDDO
+C
+       CALL FILLIC(LENIC,LAPPE,LPRES,X,Y,Z,
+     &             HEAP(BINTCR(INTB1)),HEAP(BINTCR(INTB2)),
+     &             HEAP(BINTCR(INTT1)),HEAP(BINTCR(INTT2)),
+     &             HEAP(BINTCR(INTPIC)),HEAP(BINTCR(INTIAR)),
+     &             HEAP(BINTCR(INTJAR)),HEAP(BINTCR(INTKAR)),
+     &             HEAP(BINTCR(INTLAR)),HEAP(BINTCR(INTTAR)))
+C  
+C dae  CHIRALFAIL tells gmin that quenching has led to an unfeasible geometry
+C eg one where chirality of amino acid is inverted
+C
+       CALL CHIRALT(CHIRALFAIL,LENIC,HEAP(BINTCR(INTPIC)))
+       CALL FRESTK(LSTUSD-OLDUSD)
+C
+       RETURN
+       END
+C
+C
+       SUBROUTINE CHIRALT(CHIRALFAIL,LENIC,PIC)
+C
+##INCLUDE '/export/home/dae22/charmmcode/fcm/impnon.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/dimens.fcm'
+C
+       REAL*8 PIC(*),PHI
+       INTEGER LENIC,IICD, I1
+       LOGICAL CHIRALFAIL
+       INTEGER NCHIRAL,CHIRAL(MAXAIM)
+       COMMON /CHCHIRAL/ NCHIRAL,CHIRAL
+C
+       CHIRALFAIL=.FALSE.
+       DO I1=1,NCHIRAL
+         IICD=CHIRAL(I1)
+         PHI=PIC(IICD)
+         IF (PHI.LT.0.0) CHIRALFAIL=.TRUE.
+       ENDDO
+C
+       RETURN
+       END
+C******************************************
+C jdb this subroutine returns the number of the residue
+C of the second atom in the internal coordinate entry I
+C as RESNUM.  NRES is the total number of residues, and
+C JAR and IBASE are CHARMM variables needed for the
+C determination.
+
+       SUBROUTINE GETRESNUM(JAR,IBASE,NRES,RESNUM,I)
+       IMPLICIT NONE
+
+       INTEGER NRES, RESNUM, I, JAR(*), IBASE(*)
+
+##INCLUDE '~/charmmcode/fcm/exfunc.fcm'
+
+C CHARMM function returns the residue number
+       RESNUM = GETRES(JAR(I),IBASE,NRES)
+
+       RETURN
+       END
+
+C**************************************************
+
+C
+C routine to read in reference coordinates for
+C mind/rmsd comparison.
+C stored in CHREF common block
+C
+
+       SUBROUTINE READREF(NATOMS)
+       IMPLICIT NONE
+##INCLUDE '/export/home/dae22/charmmcode/fcm/dimens.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/exfunc.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/number.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/consta.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/param.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/code.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/intcr.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/psf.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/bases.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/ctitla.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/heap.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/stack.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/stream.fcm'
+       
+       REAL*8 REFCOORD(3*MAXAIM),REFPHIPSI(MAXAIM),REFOMEGA(MAXAIM)
+       COMMON /CHREF/ REFCOORD,REFPHIPSI,REFOMEGA
+
+       INTEGER I1,NATOMS,J1
+       REAL*8 X(MAXAIM), Y(MAXAIM), Z(MAXAIM)
+       CHARACTER*4 DUM
+
+      INTEGER OLDUSD,NP,IICD
+      LOGICAL LAPPE,LPRES
+      INTEGER II,JJ,KK,LL
+      REAL*8 BB1,BB2,TT1,TT2,PP
+      LOGICAL TT
+
+      INTEGER NPHIPSI,PHIPSI(MAXAIM),NSIDECHAIN,SIDECHAIN(MAXAIM)
+      INTEGER NOMEGA,OMEGA(MAXAIM)
+      COMMON /CHDIHE/ NPHIPSI,PHIPSI,NOMEGA,OMEGA,NSIDECHAIN,SIDECHAIN
+C
+      OLDUSD=LSTUSD
+C
+C set append and preserve flags in IC FILL command to false
+       LAPPE = .FALSE.
+       LPRES = .FALSE.
+C
+
+       OPEN (UNIT=10,FILE='ref.crd',STATUS='OLD')
+
+       READ(10,*)
+       DO I1=1,NATOMS
+          READ(10,*) J1,J1,DUM,DUM,X(I1),Y(I1),Z(I1)
+          REFCOORD(3*(I1-1)+1)=X(I1)
+          REFCOORD(3*(I1-1)+2)=Y(I1)
+          REFCOORD(3*(I1-1)+3)=Z(I1)
+       ENDDO
+       CLOSE(10)
+
+C
+       CALL FILLIC(LENICS,LAPPE,LPRES,X,Y,Z,
+     &             HEAP(BINTCS(INTB1)),HEAP(BINTCS(INTB2)),
+     &             HEAP(BINTCS(INTT1)),HEAP(BINTCS(INTT2)),
+     &             HEAP(BINTCS(INTPIC)),HEAP(BINTCS(INTIAR)),
+     &             HEAP(BINTCS(INTJAR)),HEAP(BINTCS(INTKAR)),
+     &             HEAP(BINTCS(INTLAR)),HEAP(BINTCS(INTTAR)))
+C  
+C
+C
+      DO I1=1,NPHIPSI
+         IICD=PHIPSI(I1)
+
+C GETICEL is charmm routine to retrieve a specific ic table element.
+
+         CALL GETICEL(II,JJ,KK,LL,TT,BB1,BB2,TT1,TT2,PP,IICD,
+     &                 HEAP(BINTCS(INTB1)),HEAP(BINTCS(INTB2)),
+     &                 HEAP(BINTCS(INTT1)),HEAP(BINTCS(INTT2)),
+     &                 HEAP(BINTCS(INTPIC)),HEAP(BINTCS(INTIAR)),
+     &                 HEAP(BINTCS(INTJAR)),HEAP(BINTCS(INTKAR)),
+     &                 HEAP(BINTCS(INTLAR)),HEAP(BINTCS(INTTAR)))
+         
+         REFPHIPSI(I1)=PP
+      ENDDO
+
+      DO I1=1,NOMEGA
+         IICD=OMEGA(I1)
+
+C GETICEL is charmm routine to retrieve a specific ic table element.
+
+         CALL GETICEL(II,JJ,KK,LL,TT,BB1,BB2,TT1,TT2,PP,IICD,
+     &                 HEAP(BINTCS(INTB1)),HEAP(BINTCS(INTB2)),
+     &                 HEAP(BINTCS(INTT1)),HEAP(BINTCS(INTT2)),
+     &                 HEAP(BINTCS(INTPIC)),HEAP(BINTCS(INTIAR)),
+     &                 HEAP(BINTCS(INTJAR)),HEAP(BINTCS(INTKAR)),
+     &                 HEAP(BINTCS(INTLAR)),HEAP(BINTCS(INTTAR)))
+         
+         REFOMEGA(I1)=PP
+      ENDDO
+       CALL FRESTK(LSTUSD-OLDUSD)
+       RETURN
+       END
+
+
+C constructs list PHIPSI of proper dihedrals from
+C charmm's internal coordinates that are phi or psi torsions
+C which is used to take steps
+C
+
+       SUBROUTINE CALCDIHE(DIHE)
+C
+##INCLUDE '/export/home/dae22/charmmcode/fcm/impnon.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/dimens.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/exfunc.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/number.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/consta.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/param.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/code.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/psf.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/intcr.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/bases.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/heap.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/stack.fcm'
+##INCLUDE '/export/home/dae22/charmmcode/fcm/stream.fcm'
+C
+C     REAL*8 PHIPSIANGLE(100),OMEGAANGLE(100),CHI1(100),CHI2(100)
+      REAL*8 DELTA, SUMD2, DIHE
+      INTEGER NRESO,RESNUM
+      INTEGER IICD,ISLCT,OLDUSD,I1
+      INTEGER II,JJ,KK,LL
+      REAL*8 BB1,BB2,TT1,TT2,PP
+      LOGICAL TT
+    
+      INTEGER NPHIPSI,PHIPSI(MAXAIM),NSIDECHAIN,SIDECHAIN(MAXAIM)
+      INTEGER NOMEGA,OMEGA(MAXAIM)
+      COMMON /CHDIHE/ NPHIPSI,PHIPSI,NOMEGA,OMEGA,NSIDECHAIN,SIDECHAIN
+C
+      REAL*8 REFCOORD(3*MAXAIM),REFPHIPSI(MAXAIM),REFOMEGA(MAXAIM)
+      COMMON /CHREF/ REFCOORD,REFPHIPSI,REFOMEGA
+
+      SUMD2=0.d0
+      DO I1=1,NPHIPSI
+         IICD=PHIPSI(I1)
+
+C GETICEL is charmm routine to retrieve a specific ic table element.
+
+         CALL GETICEL(II,JJ,KK,LL,TT,BB1,BB2,TT1,TT2,PP,IICD,
+     &                 HEAP(BINTCR(INTB1)),HEAP(BINTCR(INTB2)),
+     &                 HEAP(BINTCR(INTT1)),HEAP(BINTCR(INTT2)),
+     &                 HEAP(BINTCR(INTPIC)),HEAP(BINTCR(INTIAR)),
+     &                 HEAP(BINTCR(INTJAR)),HEAP(BINTCR(INTKAR)),
+     &                 HEAP(BINTCR(INTLAR)),HEAP(BINTCR(INTTAR)))
+         
+C        PHIPSIANGLE(I1)=PP
+         DELTA=PP-REFPHIPSI(I1)
+         IF (DELTA.GT.180.d0) DELTA=DELTA-360.d0
+         IF (DELTA.LT.-180.d0) DELTA=DELTA+360.d0
+         SUMD2=SUMD2+DELTA*DELTA
+      ENDDO
+
+      DO I1=1,NOMEGA
+         IICD=OMEGA(I1)
+
+C GETICEL is charmm routine to retrieve a specific ic table element.
+
+         CALL GETICEL(II,JJ,KK,LL,TT,BB1,BB2,TT1,TT2,PP,IICD,
+     &                 HEAP(BINTCR(INTB1)),HEAP(BINTCR(INTB2)),
+     &                 HEAP(BINTCR(INTT1)),HEAP(BINTCR(INTT2)),
+     &                 HEAP(BINTCR(INTPIC)),HEAP(BINTCR(INTIAR)),
+     &                 HEAP(BINTCR(INTJAR)),HEAP(BINTCR(INTKAR)),
+     &                 HEAP(BINTCR(INTLAR)),HEAP(BINTCR(INTTAR)))
+         
+C        OMEGAANGLE(I1)=PP
+         DELTA=PP-REFOMEGA(I1)
+         IF (DELTA.GT.180.d0) DELTA=DELTA-360.d0
+         IF (DELTA.LT.-180.d0) DELTA=DELTA+360.d0
+         SUMD2=SUMD2+DELTA*DELTA
+      ENDDO
+C
+      DIHE=DSQRT(SUMD2/(NPHIPSI+NOMEGA))
+
+      RETURN
+      END

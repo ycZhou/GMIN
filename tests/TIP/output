@@ -1,0 +1,101 @@
+reading coordinates from file coords
+           16  atoms in the system
+Initial coordinates:
+       -3.0587459008        7.5600863525        6.5542863957
+       -1.2631935336        6.8350508552        4.5834065055
+       -3.2588820789        6.2350412795        2.7780042068
+       -5.0116348790        7.0081870828        4.6598879757
+       -1.1642337323        9.4258038997        3.7317773212
+       -3.2371351480        8.9035736059        1.9816781338
+       -3.1009807621       10.0644985381        5.5942456705
+       -5.1264265712        9.6286783343        3.7528220803
+       -1.6676519635       -1.6798705861        0.8186744615
+        0.4009778990       -1.6243116967        0.0983351602
+        1.0398509635       -1.3841903255        0.1569885480
+        3.4555295968       -2.3301001274        0.6807790141
+       -0.7172123021        1.8965162307        1.3508254756
+       -3.4397419823       -2.2521563765        0.7937563434
+       -2.1946448213        4.6442416309       -3.5747995101
+       -0.3197544280       -0.1165196996        0.5726752372
+
+  48 rigid body coordinates will be optimised for    8 TIP5 waters
+Turning off SORT option for TIP
+Container radius=       10.1779192963
+Sloppy quench tolerances for RMS gradient    0.0100000000
+In run   1 temperature fixed at    10.00    
+Step size and angular threshold will be adjusted for acceptance ratio       0.5000 initial values=      0.6000      0.0000
+Orientational step size for rigid bodies initial value       0.9000
+Configuration will be reset to quench geometry
+Sampling using Boltzman weights
+Nocedal LBFGS minimization
+Number of updates before reset in LBFGS=  4
+Maximum step size=        0.4000000000
+Guess for initial diagonal elements in LBFGS=  0.1000    
+Final quench tolerance for RMS gradient    0.0001000000
+Energy difference criterion for minima=   0.0010000000
+Maximum number of iterations: sloppy quenches  1000 final quenches  1000
+Run   1:        50 steps with temperature scaled by  0.10000000E+01
+Maximum allowed energy rise during a minimisation=    0.1000000000E-09
+
+Calculating initial energy
+Qu          1 E=     -301.3375850066 steps=   48 RMS= 0.69092E-02 Markov E=    -301.3375850     t=        0.0
+Starting MC run of         50 steps
+Temperature will be multiplied by      1.00000000 at every step
+Qu          2 E=     -301.3377716205 steps=   68 RMS= 0.92417E-02 Markov E=    -301.3375850     t=        0.1
+Qu          3 E=     -301.3376598400 steps=   64 RMS= 0.93756E-02 Markov E=    -301.3377716     t=        0.2
+Qu          4 E=     -301.3377859293 steps=   70 RMS= 0.61376E-02 Markov E=    -301.3376598     t=        0.2
+Qu          5 E=     -301.3377503324 steps=   56 RMS= 0.64525E-02 Markov E=    -301.3377859     t=        0.3
+Qu          6 E=     -301.3377904070 steps=   68 RMS= 0.76644E-02 Markov E=    -301.3377503     t=        0.3
+Qu          7 E=     -301.3376291213 steps=   77 RMS= 0.99297E-02 Markov E=    -301.3377904     t=        0.4
+Qu          8 E=     -301.3378020243 steps=   64 RMS= 0.79801E-02 Markov E=    -301.3376291     t=        0.5
+Qu          9 E=     -301.3375113350 steps=   61 RMS= 0.99237E-02 Markov E=    -301.3378020     t=        0.5
+Qu         10 E=     -301.3377524197 steps=   70 RMS= 0.72878E-02 Markov E=    -301.3375113     t=        0.6
+Qu         11 E=     -301.3376723974 steps=   57 RMS= 0.89836E-02 Markov E=    -301.3377524     t=        0.6
+Qu         12 E=     -301.3378161827 steps=   67 RMS= 0.66884E-02 Markov E=    -301.3376724     t=        0.7
+Qu         13 E=     -301.3378226737 steps=   68 RMS= 0.78950E-02 Markov E=    -301.3378162     t=        0.8
+Qu         14 E=     -301.3377987846 steps=   74 RMS= 0.76452E-02 Markov E=    -301.3378227     t=        0.9
+Qu         15 E=     -301.3377528187 steps=   73 RMS= 0.88470E-02 Markov E=    -301.3377988     t=        0.9
+Qu         16 E=     -301.3378041952 steps=   70 RMS= 0.58148E-02 Markov E=    -301.3377528     t=        1.0
+Qu         17 E=     -301.3377647805 steps=   78 RMS= 0.75788E-02 Markov E=    -301.3378042     t=        1.1
+Qu         18 E=     -301.3377122052 steps=   74 RMS= 0.99212E-02 Markov E=    -301.3377648     t=        1.1
+Qu         19 E=     -282.4858745930 steps=   97 RMS= 0.95711E-02 Markov E=    -301.3377122     t=        1.2
+Qu         20 E=     -301.3376993630 steps=   60 RMS= 0.81196E-02 Markov E=    -301.3377122     t=        1.3
+Qu         21 E=     -301.3377296644 steps=   70 RMS= 0.91506E-02 Markov E=    -301.3376994     t=        1.3
+Qu         22 E=     -301.3377567255 steps=   69 RMS= 0.84087E-02 Markov E=    -301.3377297     t=        1.4
+Qu         23 E=     -301.3377580608 steps=   58 RMS= 0.93922E-02 Markov E=    -301.3377567     t=        1.5
+Qu         24 E=     -301.3376981143 steps=   69 RMS= 0.85191E-02 Markov E=    -301.3377581     t=        1.5
+Qu         25 E=     -301.3378043059 steps=   71 RMS= 0.75448E-02 Markov E=    -301.3376981     t=        1.6
+Qu         26 E=     -301.3377435882 steps=   77 RMS= 0.86840E-02 Markov E=    -301.3378043     t=        1.7
+Qu         27 E=     -301.3377487375 steps=   71 RMS= 0.84895E-02 Markov E=    -301.3377436     t=        1.7
+Qu         28 E=     -301.3376963611 steps=   72 RMS= 0.99484E-02 Markov E=    -301.3377487     t=        1.8
+Qu         29 E=     -301.3377399271 steps=   50 RMS= 0.68387E-02 Markov E=    -301.3376964     t=        1.8
+Qu         30 E=     -301.3378053115 steps=   71 RMS= 0.97411E-02 Markov E=    -301.3377399     t=        1.9
+Qu         31 E=     -301.3377972835 steps=   69 RMS= 0.76220E-02 Markov E=    -301.3378053     t=        1.9
+Qu         32 E=     -301.3376998260 steps=   63 RMS= 0.99850E-02 Markov E=    -301.3377973     t=        2.0
+Qu         33 E=     -301.3376247970 steps=   67 RMS= 0.98287E-02 Markov E=    -301.3376998     t=        2.1
+Qu         34 E=     -301.3378159783 steps=   67 RMS= 0.67728E-02 Markov E=    -301.3376248     t=        2.1
+Qu         35 E=     -301.3376590500 steps=   65 RMS= 0.94603E-02 Markov E=    -301.3378160     t=        2.2
+Qu         36 E=     -301.3378116489 steps=   71 RMS= 0.75876E-02 Markov E=    -301.3376590     t=        2.3
+Qu         37 E=     -301.3377110474 steps=   62 RMS= 0.92961E-02 Markov E=    -301.3378116     t=        2.3
+Qu         38 E=     -301.3376906905 steps=   72 RMS= 0.99876E-02 Markov E=    -301.3377110     t=        2.4
+Qu         39 E=     -301.3378101596 steps=   75 RMS= 0.52801E-02 Markov E=    -301.3376907     t=        2.5
+Qu         40 E=     -301.3376941673 steps=   49 RMS= 0.77759E-02 Markov E=    -301.3378102     t=        2.5
+Qu         41 E=     -301.3377819436 steps=   59 RMS= 0.98014E-02 Markov E=    -301.3376942     t=        2.6
+Qu         42 E=     -301.3377050308 steps=   72 RMS= 0.99803E-02 Markov E=    -301.3377819     t=        2.7
+Qu         43 E=     -301.3377712712 steps=   73 RMS= 0.73320E-02 Markov E=    -301.3377050     t=        2.7
+Qu         44 E=     -301.3377628225 steps=   64 RMS= 0.68687E-02 Markov E=    -301.3377713     t=        2.8
+Qu         45 E=     -301.3377418532 steps=   61 RMS= 0.75121E-02 Markov E=    -301.3377628     t=        2.8
+Qu         46 E=     -301.3377517608 steps=   66 RMS= 0.92346E-02 Markov E=    -301.3377419     t=        2.9
+Qu         47 E=     -301.3377210190 steps=   56 RMS= 0.72554E-02 Markov E=    -301.3377518     t=        2.9
+Qu         48 E=     -301.3377603686 steps=   76 RMS= 0.99326E-02 Markov E=    -301.3377210     t=        3.0
+Qu         49 E=     -282.4864376571 steps=   86 RMS= 0.94236E-02 Markov E=    -301.3377604     t=        3.1
+Qu         50 E=     -282.4865249234 steps=   75 RMS= 0.85960E-02 Markov E=    -282.4864377     t=        3.2
+Qu         51 E=     -291.1426191031 steps=   83 RMS= 0.88131E-02 Markov E=    -282.4865249     t=        3.2
+[ 1] Acceptance ratio for previous   50 steps=  0.9800  FAC=  1.0500
+[ 1] Steps are now:  STEP=  0.6300[ 1] Temperature is now:  9.5238
+[ 1] Maximum rigid body rotational move is now     0.945000
+[ 1] Acceptance ratio for run=     0.98000 Step=     0.63000 Angular step factor=     0.00000 Temperature=     9.52381
+[
+Final Quench      1 energy=     -301.3378458213 steps=   39 RMS force=      0.0000970 time=        3.27
+Final Quench      2 energy=     -291.1427051824 steps=   44 RMS force=      0.0000793 time=        3.31
+Final Quench      3 energy=     -282.4865752344 steps=   45 RMS force=      0.0000752 time=        3.35

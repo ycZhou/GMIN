@@ -1,0 +1,72 @@
+SLOPPYCONV 0.001
+TIGHTCONV 0.00001
+ACCEPTRATIO 0.3
+EDIFF 0.01
+UPDATES 50
+INTMIN
+COMMENT DEBUG
+DGUESS 0.1
+MAXIT 10000 10000
+TEMPERATURE 1.0
+STEPS 10 1.0
+STEP 60.0 0.0 
+SAVE 10 
+CHPMAX  0.4
+CHPMIN  0.2 
+CHNMAX  10
+CHNMIN  0
+CHARMMTYPE 3
+CHARMM
+! input file 
+
+BOMLev -5
+PRNlev 1
+WARNlev 3
+
+set 0 /home/wales/charmmcode29/chdata/toppar
+set 1 ~/charmmcode27
+
+! Read standard topology and parameter files
+
+OPEN UNIT 10 NAME @0/toph19_eef1.inp READ CARD
+READ RTF CARD UNIT 10
+CLOSE UNIT 10
+
+OPEN UNIT 11 NAME @0/param19_eef1.inp READ CARD
+READ PARAMETER CARD UNIT 11
+CLOSE UNIT 11
+
+
+! Generate the PSF 
+
+READ SEQUence CARD
+*
+16
+GLY GLU TRP THR -
+TYR ASP ASP ALA THR -
+LYS THR PHE THR VAL -
+THR GLU
+
+GENErate SETU  WARN
+IC PURGE
+
+! read in corrected ic table for this system, with problems caused
+! by end patches fixed
+
+OPEN UNIT 20 NAME input.crd READ CARD
+READ COOR UNIT 20 CARD FREE
+CLOSE UNIT 20
+
+IC FILL
+IC SAVE
+
+eef1 setup temp 298.15 unit 93 name @0/solvpar.inp
+update ctonnb 7. ctofnb 9. cutnb 15. group rdie inbfrq -1
+CLOSE UNIT 93
+eef1 print
+
+! UPDATE
+! NBONDS  ATOM  FSWITCH RDIE  VDW VSHIFT INBFRQ -1 -
+!        CUTNB 10.0  CTOFNB 9.0 CTONNB 7.0 WMIN 1.5  EPS 1.0
+PRINT COOR
+PRINT IC

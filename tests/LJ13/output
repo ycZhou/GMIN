@@ -1,0 +1,53 @@
+reading coordinates from file coords
+           13  atoms in the system
+Initial coordinates:
+       -0.9423167206        0.5921546523        0.0685896585
+        0.9940505044       -0.2690404277        0.3554606173
+       -1.0003350031        0.5142121693        0.3952525719
+       -0.2692400217        0.3039973597        0.8884430570
+        0.0448401906        0.3499171597       -0.6055840052
+       -0.5485913122        0.6055204352        0.5851002381
+        0.9450256306       -0.9868396820       -0.5249038475
+        0.9183478563       -0.5198303854        0.0376246784
+       -0.3250136083       -0.5841886700       -0.0311367702
+        0.7994381897        0.7643317267       -1.0748596691
+        1.1340022669        0.4140673127        0.6154433270
+       -1.0148332151       -0.2675622481       -0.0514262859
+        1.0340672410        1.0038802419        0.9345062872
+
+  13 LJ atoms
+Container radius=        3.7035757245
+Sloppy quench tolerances for RMS gradient    0.0100000000
+In run   1 temperature fixed at   0.8000    
+Step size and angular threshold will be adjusted for acceptance ratio       0.5000 initial values=      0.3600      0.4000
+Configuration will be reset to quench geometry
+Sampling using Boltzman weights
+Nocedal LBFGS minimization
+Number of updates before reset in LBFGS=  4
+Maximum step size=        0.4000000000
+Guess for initial diagonal elements in LBFGS=  0.1000    
+Final quench tolerance for RMS gradient    0.0010000000
+Energy difference criterion for minima=   0.0200000000
+Maximum number of iterations: sloppy quenches   250 final quenches   500
+Run   1:        10 steps with temperature scaled by  0.10000000E+01
+Maximum allowed energy rise during a minimisation=    0.1000000000E-09
+
+Calculating initial energy
+Qu          1 E=      -40.0869223283 steps=  135 RMS= 0.86036E-02 Markov E=    -40.08692233     t=        0.0
+Starting MC run of         10 steps
+Temperature will be multiplied by      1.00000000 at every step
+Qu          2 E=      -40.0750684441 steps=   74 RMS= 0.49152E-02 Markov E=    -40.08692233     t=        0.0
+Qu          3 E=      -41.4719375007 steps=   45 RMS= 0.90275E-02 Markov E=    -40.07506844     t=        0.0
+Qu          4 E=      -41.4719748169 steps=   69 RMS= 0.37386E-02 Markov E=    -41.47193750     t=        0.0
+Qu          5 E=      -41.4445899913 steps=   53 RMS= 0.54353E-02 Markov E=    -41.47197482     t=        0.0
+Qu          6 E=      -41.4719534807 steps=   69 RMS= 0.65840E-02 Markov E=    -41.44458999     t=        0.0
+Qu          7 E=      -41.4445834278 steps=   77 RMS= 0.70403E-02 Markov E=    -41.47195348     t=        0.0
+Qu          8 E=      -44.3267990660 steps=   73 RMS= 0.34681E-02 Markov E=    -41.44458343     t=        0.0
+Qu          9 E=      -44.3267876039 steps=   80 RMS= 0.89587E-02 Markov E=    -44.32679907     t=        0.0
+Qu         10 E=      -44.3267912153 steps=   33 RMS= 0.86162E-02 Markov E=    -44.32678760     t=        0.0
+Qu         11 E=      -44.3267859117 steps=   31 RMS= 0.95934E-02 Markov E=    -44.32679122     t=        0.0
+[ 1] Acceptance ratio for run=     0.00000 Step=     0.36000 Angular step factor=     0.40000 Temperature=     0.80000
+Final Quench      1 energy=      -44.3268012893 steps=    3 RMS force=      0.0006510 time=        0.01
+Final Quench      2 energy=      -41.4719797601 steps=    5 RMS force=      0.0006495 time=        0.01
+Final Quench      3 energy=      -41.4445964625 steps=    6 RMS force=      0.0009456 time=        0.01
+Final Quench      4 energy=      -40.0869607837 steps=    9 RMS force=      0.0006893 time=        0.01

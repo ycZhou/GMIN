@@ -1,0 +1,18 @@
+Currently supported and tested for the following plaforms and compilers:
+Linux with:
+         pgi/6.0-4
+         pgi64/6.0-4  
+         nag/5.0-361
+         nag64/5.0-363        
+         ifort/9.0.032
+         ifort_em64t/9.0.032
+Solaris with:
+         Sun Studio 11 f90
+
+To build GMIN:
+
+1. Descend into src directory 
+
+2. Modify Makefile COMPILERS AND COMPILER FLAGS section to choose the required values and type make.
+
+4. Executable GMIN.2.2 will be generated.

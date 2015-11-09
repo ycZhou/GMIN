@@ -1,0 +1,734 @@
+reading coordinates from file input.crd
+          160  atoms in the system
+CHPMAX=    0.4000000000
+CHPMIN=    0.2000000000
+CHNMAX=   10.0000000000
+CHNMIN=    0.0000000000
+CHARMMTYPE set to  3
+1
+                 Chemistry at HARvard Macromolecular Mechanics
+                   (CHARMM) - Developmental Version 31a2   February 15, 2004   
+       Copyright(c) 1984-2001  President and Fellows of Harvard College
+                              All Rights Reserved
+      Current operating system: Linux-2.6.11.4-21.7-default(x86_64)@clust.ch
+                 Created on  5/11/ 6 at 11:57:10 by user: tvb20       
+
+            Maximum number of ATOMS:     25140, and RESidues:       14000
+            Current HEAP size:         2048000, and STACK size:    500000
+
+ RDTITL>  
+ RDTITL> No title read.
+
+      ***** LEVEL  1 WARNING FROM <RDTITL> *****
+      ***** Title expected.
+      ******************************************
+      BOMLEV (  0) IS NOT REACHED. WRNLEV IS  5
+
+  
+ CHARMM>     
+  
+ CHARMM>    BOMLev -5
+  
+ CHARMM>    PRNlev 1
+
+      ***** LEVEL  0 WARNING FROM <CHARMM> *****
+      ***** Unrecognized command: WARN
+      ******************************************
+      BOMLEV ( -5) IS NOT REACHED. WRNLEV IS  5
+
+ **** Warning ****  The following extraneous characters
+ were found while command processing in CHARMM
+ PARRDR> NOTE: atom type "CR  " is removed from previous group
+ PARRDR> NOTE: atom type "OC  " is removed from previous group
+ PARRDR> NOTE: atom type "OT  " is removed from previous group
+ PARRDR> NOTE: atom type "OH2 " is removed from previous group
+ RDTITL> No title read.
+ ***** Message from SEQRDR ***** THE SYSTEM CONTAINS  6 TITRATABLE GROUPS
+ THE USER MUST PREDETERMINE THE PROTONATION STATE THROUGH THE SEQUENCE AND RTF
+ HIS -  0  ASP -  2  GLU -  2  LYS -  1  TYR -  1
+ ** WARNING ** BOND NOT FOUND FOR RESIDUE   1 GLY   .
+ ATOMS "N     " "H     " WERE REQUESTED.
+ ** WARNING ** DIHEDRAL NOT FOUND FOR RESIDUE   1 GLY   .
+ ATOMS "-C    " "N     " "CA    " "C     " WERE REQUESTED.
+ ** WARNING ** IMPROPER NOT FOUND FOR RESIDUE   1 GLY   .
+ ATOMS "N     " "-C    " "CA    " "H     " WERE REQUESTED.
+ ** WARNING ** DONOR NOT FOUND FOR RESIDUE   1 GLY   .
+ ATOMS "H     " "N     " WERE REQUESTED.
+ ** WARNING ** BOND NOT FOUND FOR RESIDUE  16 GLU   .
+ ATOMS "C     " "+N    " WERE REQUESTED.
+ ** WARNING ** BOND NOT FOUND FOR RESIDUE  16 GLU   .
+ ATOMS "C     " "O     " WERE REQUESTED.
+ ** WARNING ** DIHEDRAL NOT FOUND FOR RESIDUE  16 GLU   .
+ ATOMS "N     " "CA    " "C     " "+N    " WERE REQUESTED.
+ ** WARNING ** DIHEDRAL NOT FOUND FOR RESIDUE  16 GLU   .
+ ATOMS "CA    " "C     " "+N    " "+CA   " WERE REQUESTED.
+ ** WARNING ** IMPROPER NOT FOUND FOR RESIDUE  16 GLU   .
+ ATOMS "C     " "CA    " "+N    " "O     " WERE REQUESTED.
+ ** WARNING ** ACCEPTOR NOT FOUND FOR RESIDUE  16 GLU   .
+ ATOMS "O     " "C     " WERE REQUESTED.
+ RDTITL> No title read.
+SLVPRINT> TOTAL SOLVATION FREE ENERGY:        -252.638 Kcal/mol
+ SLVPRINT>                            G         H       CP
+    3 1    1    GLY  N    NH3      -18.688    -23.359    -16.819
+    5 1    1    GLY  CA   CH2E       0.330     -0.540     16.479
+    6 1    1    GLY  C    C          0.000      0.000      0.000
+    7 1    1    GLY  O    O         -4.212     -4.573     -6.955
+    8 1    2    GLU  N    NH1       -4.877     -7.425     -7.213
+   10 1    2    GLU  CA   CH1E      -0.137      0.642      0.000
+   11 1    2    GLU  CB   CH2E       0.265     -0.435     13.271
+   12 1    2    GLU  CG   CH2E       0.294     -0.481     14.678
+   13 1    2    GLU  CD   C          0.000      0.000      0.000
+   14 1    2    GLU  OE1  OC        -8.994    -10.793     -8.454
+   15 1    2    GLU  OE2  OC        -9.205    -11.046     -8.653
+   16 1    2    GLU  C    C          0.000      0.000      0.000
+   17 1    2    GLU  O    O         -3.654     -3.967     -6.033
+   18 1    3    TRP  N    NH1       -3.931     -5.985     -5.814
+   20 1    3    TRP  CA   CH1E      -0.100      0.471      0.000
+   21 1    3    TRP  CB   CH2E       0.232     -0.380     11.598
+   22 1    3    TRP  CG   CR        -0.669      1.668      5.185
+   23 1    3    TRP  CD2  CR        -0.657      1.638      5.092
+   24 1    3    TRP  CE2  CR        -0.674      1.681      5.224
+   25 1    3    TRP  CE3  CR1E       0.041     -0.705      5.000
+   26 1    3    TRP  CD1  CR1E       0.044     -0.759      5.382
+   27 1    3    TRP  NE1  NH1       -4.894     -7.450     -7.237
+   29 1    3    TRP  CZ2  CR1E       0.047     -0.808      5.732
+   30 1    3    TRP  CZ3  CR1E       0.047     -0.797      5.651
+   31 1    3    TRP  CH2  CR1E       0.047     -0.794      5.629
+   32 1    3    TRP  C    C          0.000      0.000      0.000
+   33 1    3    TRP  O    O         -3.473     -3.771     -5.734
+   34 1    4    THR  N    NH1       -2.975     -4.529     -4.400
+   36 1    4    THR  CA   CH1E      -0.122      0.572      0.000
+   37 1    4    THR  CB   CH1E      -0.131      0.615      0.000
+   38 1    4    THR  OG1  OH1       -4.876     -7.631     -9.226
+   40 1    4    THR  CG2  CH3E       0.758     -1.238     24.766
+   41 1    4    THR  C    C          0.000      0.000      0.000
+   42 1    4    THR  O    O         -2.484     -2.697     -4.102
+   43 1    5    TYR  N    NH1       -3.519     -5.358     -5.204
+   45 1    5    TYR  CA   CH1E      -0.093      0.436      0.000
+   46 1    5    TYR  CB   CH2E       0.244     -0.400     12.195
+   47 1    5    TYR  CG   CR        -0.650      1.622      5.042
+   48 1    5    TYR  CD1  CR1E       0.043     -0.740      5.246
+   49 1    5    TYR  CE1  CR1E       0.047     -0.799      5.663
+   50 1    5    TYR  CD2  CR1E       0.039     -0.669      4.746
+   51 1    5    TYR  CE2  CR1E       0.041     -0.692      4.904
+   52 1    5    TYR  CZ   C          0.000      0.000      0.000
+   53 1    5    TYR  OH   OH1       -4.880     -7.637     -9.233
+   55 1    5    TYR  C    C          0.000      0.000      0.000
+   56 1    5    TYR  O    O         -2.848     -3.092     -4.702
+   57 1    6    ASP  N    NH1       -3.196     -4.865     -4.726
+   59 1    6    ASP  CA   CH1E      -0.102      0.478      0.000
+   60 1    6    ASP  CB   CH2E       0.239     -0.391     11.928
+   61 1    6    ASP  CG   C          0.000      0.000      0.000
+   62 1    6    ASP  OD1  OC        -8.631    -10.357     -8.113
+   63 1    6    ASP  OD2  OC        -8.396    -10.076     -7.893
+   64 1    6    ASP  C    C          0.000      0.000      0.000
+   65 1    6    ASP  O    O         -3.295     -3.578     -5.441
+   66 1    7    ASP  N    NH1       -3.314     -5.045     -4.901
+   68 1    7    ASP  CA   CH1E      -0.103      0.480      0.000
+   69 1    7    ASP  CB   CH2E       0.212     -0.348     10.608
+   70 1    7    ASP  CG   C          0.000      0.000      0.000
+   71 1    7    ASP  OD1  OC        -8.030     -9.636     -7.548
+   72 1    7    ASP  OD2  OC        -8.255     -9.906     -7.760
+   73 1    7    ASP  C    C          0.000      0.000      0.000
+   74 1    7    ASP  O    O         -3.058     -3.320     -5.049
+   75 1    8    ALA  N    NH1       -4.239     -6.454     -6.269
+   77 1    8    ALA  CA   CH1E      -0.127      0.594      0.000
+   78 1    8    ALA  CB   CH3E       0.795     -1.299     26.003
+   79 1    8    ALA  C    C          0.000      0.000      0.000
+   80 1    8    ALA  O    O         -3.631     -3.943     -5.996
+   81 1    9    THR  N    NH1       -3.674     -5.594     -5.434
+   83 1    9    THR  CA   CH1E      -0.132      0.619      0.000
+   84 1    9    THR  CB   CH1E      -0.133      0.624      0.000
+   85 1    9    THR  OG1  OH1       -4.849     -7.588     -9.174
+   87 1    9    THR  CG2  CH3E       0.734     -1.199     24.003
+   88 1    9    THR  C    C          0.000      0.000      0.000
+   89 1    9    THR  O    O         -2.990     -3.246     -4.937
+   90 1    10   LYS  N    NH1       -3.544     -5.396     -5.242
+   92 1    10   LYS  CA   CH1E      -0.116      0.543      0.000
+   93 1    10   LYS  CB   CH2E       0.273     -0.447     13.634
+   94 1    10   LYS  CG   CH2E       0.301     -0.493     15.034
+   95 1    10   LYS  CD   CH2E       0.335     -0.549     16.728
+   96 1    10   LYS  CE   CH2E       0.341     -0.559     17.047
+   97 1    10   LYS  NZ   NH3      -19.130    -23.913    -17.217
+  101 1    10   LYS  C    C          0.000      0.000      0.000
+  102 1    10   LYS  O    O         -3.277     -3.558     -5.410
+  103 1    11   THR  N    NH1       -3.203     -4.877     -4.737
+  105 1    11   THR  CA   CH1E      -0.126      0.592      0.000
+  106 1    11   THR  CB   CH1E      -0.125      0.585      0.000
+  107 1    11   THR  OG1  OH1       -4.781     -7.482     -9.045
+  109 1    11   THR  CG2  CH3E       0.699     -1.141     22.836
+  110 1    11   THR  C    C          0.000      0.000      0.000
+  111 1    11   THR  O    O         -3.429     -3.723     -5.661
+  112 1    12   PHE  N    NH1       -3.578     -5.448     -5.292
+  114 1    12   PHE  CA   CH1E      -0.095      0.447      0.000
+  115 1    12   PHE  CB   CH2E       0.234     -0.384     11.708
+  116 1    12   PHE  CG   CR        -0.633      1.580      4.910
+  117 1    12   PHE  CD1  CR1E       0.039     -0.668      4.739
+  118 1    12   PHE  CD2  CR1E       0.042     -0.722      5.118
+  119 1    12   PHE  CE1  CR1E       0.037     -0.633      4.486
+  120 1    12   PHE  CE2  CR1E       0.042     -0.711      5.045
+  121 1    12   PHE  CZ   CR1E       0.038     -0.648      4.596
+  122 1    12   PHE  C    C          0.000      0.000      0.000
+  123 1    12   PHE  O    O         -3.436     -3.730     -5.673
+  124 1    13   THR  N    NH1       -2.773     -4.222     -4.102
+  126 1    13   THR  CA   CH1E      -0.113      0.528      0.000
+  127 1    13   THR  CB   CH1E      -0.126      0.590      0.000
+  128 1    13   THR  OG1  OH1       -4.740     -7.417     -8.967
+  130 1    13   THR  CG2  CH3E       0.707     -1.155     23.107
+  131 1    13   THR  C    C          0.000      0.000      0.000
+  132 1    13   THR  O    O         -2.038     -2.212     -3.364
+  133 1    14   VAL  N    NH1       -2.671     -4.066     -3.950
+  135 1    14   VAL  CA   CH1E      -0.122      0.571      0.000
+  136 1    14   VAL  CB   CH1E      -0.147      0.687      0.000
+  137 1    14   VAL  CG1  CH3E       0.901     -1.472     29.451
+  138 1    14   VAL  CG2  CH3E       0.911     -1.488     29.770
+  139 1    14   VAL  C    C          0.000      0.000      0.000
+  140 1    14   VAL  O    O         -3.129     -3.398     -5.167
+  141 1    15   THR  N    NH1       -2.727     -4.151     -4.033
+  143 1    15   THR  CA   CH1E      -0.117      0.549      0.000
+  144 1    15   THR  CB   CH1E      -0.116      0.542      0.000
+  145 1    15   THR  OG1  OH1       -4.763     -7.454     -9.012
+  147 1    15   THR  CG2  CH3E       0.559     -0.914     18.282
+  148 1    15   THR  C    C          0.000      0.000      0.000
+  149 1    15   THR  O    O         -2.989     -3.245     -4.935
+  150 1    16   GLU  N    NH1       -3.591     -5.467     -5.310
+  152 1    16   GLU  CA   CH1E      -0.136      0.635      0.000
+  153 1    16   GLU  CB   CH2E       0.275     -0.451     13.744
+  154 1    16   GLU  CG   CH2E       0.319     -0.522     15.931
+  155 1    16   GLU  CD   C          0.000      0.000      0.000
+  156 1    16   GLU  OE1  OC        -9.309    -11.171     -8.751
+  157 1    16   GLU  OE2  OC        -9.367    -11.241     -8.805
+  158 1    16   GLU  C    C          0.000      0.000      0.000
+  159 1    16   GLU  OT1  OC        -7.662     -9.194     -7.202
+  160 1    16   GLU  OT2  OC        -8.180     -9.816     -7.689
+SLVPRINT> TOTAL ALIPHATIC :           7.436 Kcal/mol
+SLVPRINT> TOTAL AROMATIC  :          -2.689 Kcal/mol
+SLVPRINT> TOTAL POLAR     :        -257.386 Kcal/mol
+SLVPRINT> ENTHALPY (ALIPHATIC,AROMATIC,POLAR)       -340.548 (         -4.488         -1.955       -334.105 )
+SLVPRINT>       CP (ALIPHATIC,AROMATIC,POLAR)        157.609 (        392.801         97.390       -332.583 )
+ **** Warning ****  The following extraneous characters
+ were found while command processing in CHARMM
+ **** Warning ****  The following extraneous characters
+ were found while command processing in CHARMM
+ NBOND          163
+ NTHETA          235
+ NPHI           88
+ NSEG=            1
+ IAR, IRES, ISEG =             1            1            1
+ LP: IICD=            1
+ IAR, IRES, ISEG =             2            1            1
+ IAR, IRES, ISEG =             4            1            1
+ IAR, IRES, ISEG =             3            1            1
+ LP: IICD=            4
+ IAR, IRES, ISEG =             8            2            1
+ IAR, IRES, ISEG =             5            1            1
+ LO: IICD=            6
+ IAR, IRES, ISEG =             6            1            1
+ IAR, IRES, ISEG =             6            1            1
+ LP: IICD=            8
+ IAR, IRES, ISEG =             8            2            1
+ LP: IICD=            9
+ IAR, IRES, ISEG =            18            3            1
+ IAR, IRES, ISEG =            10            2            1
+ LO: IICD=           11
+ IAR, IRES, ISEG =             8            2            1
+ IAR, IRES, ISEG =             8            2            1
+ LS: IICD=           13            1            1
+ IAR, IRES, ISEG =            10            2            1
+ LS: IICD=           14            1            2
+ IAR, IRES, ISEG =            11            2            1
+ LS: IICD=           15            1            3
+ IAR, IRES, ISEG =            14            2            1
+ IAR, IRES, ISEG =            16            2            1
+ IAR, IRES, ISEG =            16            2            1
+ LP: IICD=           18
+ IAR, IRES, ISEG =            18            3            1
+ LP: IICD=           19
+ IAR, IRES, ISEG =            34            4            1
+ IAR, IRES, ISEG =            20            3            1
+ LO: IICD=           21
+ IAR, IRES, ISEG =            18            3            1
+ IAR, IRES, ISEG =            18            3            1
+ WARNING: None of the dihedrals in the tryptophan ring
+    will being twisted.
+ LS: IICD=           23            1            4
+ IAR, IRES, ISEG =            20            3            1
+ WARNING: None of the dihedrals in the tryptophan ring
+    will being twisted.
+ LS: IICD=           24            1            5
+ IAR, IRES, ISEG =            23            3            1
+ IAR, IRES, ISEG =            26            3            1
+ WARNING: None of the dihedrals in the tryptophan ring
+    will being twisted.
+ IAR, IRES, ISEG =            23            3            1
+ WARNING: None of the dihedrals in the tryptophan ring
+    will being twisted.
+ IAR, IRES, ISEG =            24            3            1
+ IAR, IRES, ISEG =            24            3            1
+ IAR, IRES, ISEG =            24            3            1
+ WARNING: None of the dihedrals in the tryptophan ring
+    will being twisted.
+ IAR, IRES, ISEG =            25            3            1
+ WARNING: None of the dihedrals in the tryptophan ring
+    will being twisted.
+ IAR, IRES, ISEG =            23            3            1
+ WARNING: None of the dihedrals in the tryptophan ring
+    will being twisted.
+ IAR, IRES, ISEG =            32            3            1
+ IAR, IRES, ISEG =            32            3            1
+ LP: IICD=           34
+ IAR, IRES, ISEG =            34            4            1
+ LP: IICD=           35
+ IAR, IRES, ISEG =            43            5            1
+ IAR, IRES, ISEG =            36            4            1
+ LO: IICD=           37
+ IAR, IRES, ISEG =            34            4            1
+ IAR, IRES, ISEG =            34            4            1
+ WARNING -- SETDIHE has not been test for THR
+ LS: IICD=           39            1            6
+ IAR, IRES, ISEG =            38            4            1
+ IAR, IRES, ISEG =            36            4            1
+ WARNING -- SETDIHE has not been test for THR
+ LS: IICD=           41            1            7
+ IAR, IRES, ISEG =            41            4            1
+ IAR, IRES, ISEG =            41            4            1
+ LP: IICD=           43
+ IAR, IRES, ISEG =            43            5            1
+ LP: IICD=           44
+ IAR, IRES, ISEG =            57            6            1
+ IAR, IRES, ISEG =            45            5            1
+ LO: IICD=           46
+ IAR, IRES, ISEG =            43            5            1
+ IAR, IRES, ISEG =            43            5            1
+ WARNING: It is probably not of much consequence, but
+ the oxygen on the ring of tyrosine may not be twisted.
+ LS: IICD=           48            1            8
+ IAR, IRES, ISEG =            45            5            1
+ WARNING: It is probably not of much consequence, but
+ the oxygen on the ring of tyrosine may not be twisted.
+ LS: IICD=           49            1            9
+ IAR, IRES, ISEG =            48            5            1
+ IAR, IRES, ISEG =            50            5            1
+ WARNING: It is probably not of much consequence, but
+ the oxygen on the ring of tyrosine may not be twisted.
+ IAR, IRES, ISEG =            48            5            1
+ WARNING: It is probably not of much consequence, but
+ the oxygen on the ring of tyrosine may not be twisted.
+ IAR, IRES, ISEG =            47            5            1
+ WARNING: It is probably not of much consequence, but
+ the oxygen on the ring of tyrosine may not be twisted.
+ IAR, IRES, ISEG =            51            5            1
+ IAR, IRES, ISEG =            49            5            1
+ WARNING: It is probably not of much consequence, but
+ the oxygen on the ring of tyrosine may not be twisted.
+ LS: IICD=           55            1           10
+ IAR, IRES, ISEG =            55            5            1
+ IAR, IRES, ISEG =            55            5            1
+ LP: IICD=           57
+ IAR, IRES, ISEG =            57            6            1
+ LP: IICD=           58
+ IAR, IRES, ISEG =            66            7            1
+ IAR, IRES, ISEG =            59            6            1
+ LO: IICD=           60
+ IAR, IRES, ISEG =            57            6            1
+ IAR, IRES, ISEG =            57            6            1
+ LS: IICD=           62            1           11
+ IAR, IRES, ISEG =            59            6            1
+ LS: IICD=           63            1           12
+ IAR, IRES, ISEG =            62            6            1
+ IAR, IRES, ISEG =            64            6            1
+ IAR, IRES, ISEG =            64            6            1
+ LP: IICD=           66
+ IAR, IRES, ISEG =            66            7            1
+ LP: IICD=           67
+ IAR, IRES, ISEG =            75            8            1
+ IAR, IRES, ISEG =            68            7            1
+ LO: IICD=           69
+ IAR, IRES, ISEG =            66            7            1
+ IAR, IRES, ISEG =            66            7            1
+ LS: IICD=           71            1           13
+ IAR, IRES, ISEG =            68            7            1
+ LS: IICD=           72            1           14
+ IAR, IRES, ISEG =            71            7            1
+ IAR, IRES, ISEG =            73            7            1
+ IAR, IRES, ISEG =            73            7            1
+ LP: IICD=           75
+ IAR, IRES, ISEG =            75            8            1
+ LP: IICD=           76
+ IAR, IRES, ISEG =            81            9            1
+ IAR, IRES, ISEG =            77            8            1
+ LO: IICD=           78
+ IAR, IRES, ISEG =            75            8            1
+ IAR, IRES, ISEG =            79            8            1
+ IAR, IRES, ISEG =            79            8            1
+ LP: IICD=           81
+ IAR, IRES, ISEG =            81            9            1
+ LP: IICD=           82
+ IAR, IRES, ISEG =            90           10            1
+ IAR, IRES, ISEG =            83            9            1
+ LO: IICD=           84
+ IAR, IRES, ISEG =            81            9            1
+ IAR, IRES, ISEG =            81            9            1
+ WARNING -- SETDIHE has not been test for THR
+ LS: IICD=           86            1           15
+ IAR, IRES, ISEG =            85            9            1
+ IAR, IRES, ISEG =            83            9            1
+ WARNING -- SETDIHE has not been test for THR
+ LS: IICD=           88            1           16
+ IAR, IRES, ISEG =            88            9            1
+ IAR, IRES, ISEG =            88            9            1
+ LP: IICD=           90
+ IAR, IRES, ISEG =            90           10            1
+ LP: IICD=           91
+ IAR, IRES, ISEG =           103           11            1
+ IAR, IRES, ISEG =            92           10            1
+ LO: IICD=           93
+ IAR, IRES, ISEG =            90           10            1
+ IAR, IRES, ISEG =            90           10            1
+ LS: IICD=           95            1           17
+ IAR, IRES, ISEG =            92           10            1
+ LS: IICD=           96            1           18
+ IAR, IRES, ISEG =            93           10            1
+ LS: IICD=           97            1           19
+ IAR, IRES, ISEG =            94           10            1
+ LS: IICD=           98            1           20
+ IAR, IRES, ISEG =            95           10            1
+ LS: IICD=           99            1           21
+ IAR, IRES, ISEG =            98           10            1
+ IAR, IRES, ISEG =            99           10            1
+ IAR, IRES, ISEG =           101           10            1
+ IAR, IRES, ISEG =           101           10            1
+ LP: IICD=          103
+ IAR, IRES, ISEG =           103           11            1
+ LP: IICD=          104
+ IAR, IRES, ISEG =           112           12            1
+ IAR, IRES, ISEG =           105           11            1
+ LO: IICD=          106
+ IAR, IRES, ISEG =           103           11            1
+ IAR, IRES, ISEG =           103           11            1
+ WARNING -- SETDIHE has not been test for THR
+ LS: IICD=          108            1           22
+ IAR, IRES, ISEG =           107           11            1
+ IAR, IRES, ISEG =           105           11            1
+ WARNING -- SETDIHE has not been test for THR
+ LS: IICD=          110            1           23
+ IAR, IRES, ISEG =           110           11            1
+ IAR, IRES, ISEG =           110           11            1
+ LP: IICD=          112
+ IAR, IRES, ISEG =           112           12            1
+ LP: IICD=          113
+ IAR, IRES, ISEG =           124           13            1
+ IAR, IRES, ISEG =           114           12            1
+ LO: IICD=          115
+ IAR, IRES, ISEG =           112           12            1
+ IAR, IRES, ISEG =           112           12            1
+ LS: IICD=          117            1           24
+ IAR, IRES, ISEG =           114           12            1
+ LS: IICD=          118            1           25
+ IAR, IRES, ISEG =           117           12            1
+ IAR, IRES, ISEG =           117           12            1
+ IAR, IRES, ISEG =           118           12            1
+ IAR, IRES, ISEG =           116           12            1
+ IAR, IRES, ISEG =           122           12            1
+ IAR, IRES, ISEG =           122           12            1
+ LP: IICD=          124
+ IAR, IRES, ISEG =           124           13            1
+ LP: IICD=          125
+ IAR, IRES, ISEG =           133           14            1
+ IAR, IRES, ISEG =           126           13            1
+ LO: IICD=          127
+ IAR, IRES, ISEG =           124           13            1
+ IAR, IRES, ISEG =           124           13            1
+ WARNING -- SETDIHE has not been test for THR
+ LS: IICD=          129            1           26
+ IAR, IRES, ISEG =           128           13            1
+ IAR, IRES, ISEG =           126           13            1
+ WARNING -- SETDIHE has not been test for THR
+ LS: IICD=          131            1           27
+ IAR, IRES, ISEG =           131           13            1
+ IAR, IRES, ISEG =           131           13            1
+ LP: IICD=          133
+ IAR, IRES, ISEG =           133           14            1
+ LP: IICD=          134
+ IAR, IRES, ISEG =           141           15            1
+ IAR, IRES, ISEG =           135           14            1
+ LO: IICD=          136
+ IAR, IRES, ISEG =           133           14            1
+ IAR, IRES, ISEG =           133           14            1
+ WARNING: SETDIHE has not been tested for VAL.
+ LS: IICD=          138            1           28
+ IAR, IRES, ISEG =           137           14            1
+ IAR, IRES, ISEG =           139           14            1
+ IAR, IRES, ISEG =           139           14            1
+ LP: IICD=          141
+ IAR, IRES, ISEG =           141           15            1
+ LP: IICD=          142
+ IAR, IRES, ISEG =           150           16            1
+ IAR, IRES, ISEG =           143           15            1
+ LO: IICD=          144
+ IAR, IRES, ISEG =           141           15            1
+ IAR, IRES, ISEG =           141           15            1
+ WARNING -- SETDIHE has not been test for THR
+ LS: IICD=          146            1           29
+ IAR, IRES, ISEG =           145           15            1
+ IAR, IRES, ISEG =           143           15            1
+ WARNING -- SETDIHE has not been test for THR
+ LS: IICD=          148            1           30
+ IAR, IRES, ISEG =           148           15            1
+ IAR, IRES, ISEG =           148           15            1
+ LP: IICD=          150
+ IAR, IRES, ISEG =           150           16            1
+ IAR, IRES, ISEG =           150           16            1
+ LS: IICD=          152            1           31
+ IAR, IRES, ISEG =           152           16            1
+ LS: IICD=          153            1           32
+ IAR, IRES, ISEG =           153           16            1
+ LS: IICD=          154            1           33
+ IAR, IRES, ISEG =           156           16            1
+ IAR, IRES, ISEG =           150           16            1
+ LP: IICD=          156
+ IAR, IRES, ISEG =           160           16            1
+number of internal coordinates for segment    1
+ chsetdihe NPHIPSI           32
+ chsetdihe NOMEGAC           15
+ chsetdihe NSIDECHAIN           33
+ chsetdihe NCHIRAL           15
+            1            1           13
+            1            2           14
+            1            3           15
+            1            4           23
+            1            5           24
+            1            6           39
+            1            7           41
+            1            8           48
+            1            9           49
+            1           10           55
+            1           11           62
+            1           12           63
+            1           13           71
+            1           14           72
+            1           15           86
+            1           16           88
+            1           17           95
+            1           18           96
+            1           19           97
+            1           20           98
+            1           21           99
+            1           22          108
+            1           23          110
+            1           24          117
+            1           25          118
+            1           26          129
+            1           27          131
+            1           28          138
+            1           29          146
+            1           30          148
+            1           31          152
+            1           32          153
+            1           33          154
+Initial coordinates:
+        4.0916300000        8.4743000000       -4.1077300000
+        5.2778800000        9.2167100000       -5.1393500000
+        4.7837000000        9.2403300000       -4.2078600000
+        4.3524500000       10.1786500000       -4.1085300000
+        5.9093000000        9.1064200000       -3.3086800000
+        7.1014100000        9.6776600000       -4.0549700000
+        7.0078800000        9.8125900000       -5.2793900000
+        8.1842200000       10.0037600000       -3.3550900000
+        8.2148500000        9.8265600000       -2.3904800000
+        9.3752300000       10.5720300000       -3.9636000000
+        9.2749300000       12.1003200000       -3.9542400000
+       10.3300600000       12.8210900000       -4.7903700000
+       10.2058300000       14.3376600000       -4.7559000000
+       10.8160500000       14.9594100000       -3.8868900000
+        9.5046100000       14.8945600000       -5.5995700000
+       10.5611500000       10.1098700000       -3.1246100000
+       10.4454100000        9.9570400000       -1.9057700000
+       11.7024100000        9.8756000000       -3.7733000000
+       11.7700800000       10.0606100000       -4.7345400000
+       12.9110800000        9.4241000000       -3.1054400000
+       13.0097100000        7.8926300000       -3.2021600000
+       14.1773500000        7.2538600000       -2.4521400000
+       14.3906500000        7.2014100000       -1.0976800000
+       15.5664000000        6.5243700000       -1.0167600000
+       13.8684200000        7.8840900000       -0.0242500000
+       15.1951000000        6.6164300000       -3.1343500000
+       16.0403400000        6.1857900000       -2.2199400000
+       16.8815900000        5.7166500000       -2.3996900000
+       16.3263300000        6.4590200000        0.1239100000
+       14.6013300000        7.8173300000        1.1515400000
+       15.8042100000        7.1190500000        1.2252200000
+       14.0962600000       10.1027300000       -3.7828600000
+       14.0210200000       10.4856800000       -4.9532000000
+       15.1884300000       10.2620600000       -3.0344100000
+       15.2268000000        9.8635700000       -2.1379800000
+       16.4011700000       10.9129200000       -3.5051900000
+       16.2628200000       12.4612700000       -3.3981700000
+       17.4350100000       13.0098500000       -3.9929600000
+       17.3332100000       13.9643900000       -4.0629800000
+       16.0836400000       12.9840100000       -1.9735700000
+       17.5710600000       10.3650900000       -2.6850600000
+       17.3770800000        9.5398300000       -1.7840300000
+       18.7952700000       10.8245500000       -2.9605600000
+       18.8625200000       11.5761700000       -3.5917300000
+       19.9868600000       10.3224000000       -2.2930700000
+       21.2210800000       10.6368700000       -3.1533500000
+       22.4948000000        9.9207400000       -2.7175800000
+       22.6012900000        8.5501900000       -2.8638800000
+       23.7379300000        7.8964300000       -2.4348800000
+       23.5361100000       10.6426900000       -2.1658900000
+       24.6732900000        9.9922800000       -1.7341400000
+       24.7581100000        8.6212700000       -1.8575200000
+       25.8586900000        7.9551400000       -1.3568000000
+       26.2722100000        8.4876800000       -0.6633600000
+       20.0944700000       10.8939300000       -0.8772600000
+       20.7984200000       11.8689900000       -0.5994400000
+       19.3496500000       10.2806300000        0.0459700000
+       18.7368300000        9.5753700000       -0.2633100000
+       19.3557100000       10.6743000000        1.4499900000
+       18.0582900000       10.1910400000        2.1220200000
+       17.9209400000       10.5234700000        3.6075300000
+       17.5321100000        9.6416100000        4.3721100000
+       18.1672800000       11.6672700000        3.9966600000
+       20.6027200000       10.2036700000        2.2003400000
+       20.5603300000        9.3080100000        3.0453300000
+       21.7385900000       10.8203200000        1.8666300000
+       21.7094300000       11.4869000000        1.1410700000
+       23.0190100000       10.5369600000        2.5009100000
+       23.7041500000        9.3308900000        1.8306000000
+       25.1548300000        9.0899800000        2.2434100000
+       26.0088800000        9.0025800000        1.3582800000
+       25.4321800000        8.9758900000        3.4380500000
+       23.9107700000       11.7684000000        2.4281600000
+       24.5311500000       12.0463500000        1.4019600000
+       23.9762400000       12.5031400000        3.5374600000
+       23.5119800000       12.2137000000        4.3532800000
+       24.7630600000       13.7224200000        3.6336800000
+       23.9109800000       14.9180600000        3.2211100000
+       25.1667800000       13.9305800000        5.0866200000
+       24.5078800000       13.4210600000        5.9966500000
+       26.2548800000       14.6709600000        5.3078400000
+       26.7116900000       15.1104300000        4.5582500000
+       26.7791000000       14.9482000000        6.6375500000
+       27.5759600000       13.7243200000        7.1839700000
+       27.9102100000       14.0364100000        8.5328500000
+       28.2895000000       13.2566400000        8.9503000000
+       28.8290000000       13.3727100000        6.3838700000
+       27.6289300000       16.2179700000        6.5600600000
+       27.8202100000       16.7838400000        5.4771800000
+       28.1596500000       16.6725300000        7.6985000000
+       28.0830000000       16.0986700000        8.4934600000
+       28.9285700000       17.9054100000        7.7628100000
+       28.9505100000       18.4192100000        9.2048500000
+       29.5139800000       19.8264900000        9.3628700000
+       29.4880700000       20.2345800000       10.8267300000
+       30.0414600000       21.6413600000       10.9846100000
+       30.0241400000       22.0401100000       12.3787000000
+       30.4063500000       23.0030400000       12.4690900000
+       29.0468300000       22.0193200000       12.7334300000
+       30.6082500000       21.3817000000       12.9328300000
+       30.3362400000       17.6776100000        7.2137300000
+       31.2530700000       17.2301300000        7.9066900000
+       30.4685400000       17.9420100000        5.9137300000
+       29.6727000000       18.1939600000        5.3930800000
+       31.7357900000       17.8567600000        5.2036900000
+       32.0225900000       16.3816800000        4.7911400000
+       33.3467200000       16.3664300000        4.2682200000
+       33.6043200000       15.4610100000        4.0714400000
+       31.0343700000       15.7987400000        3.7824500000
+       31.6951000000       18.8117800000        4.0081400000
+       30.6765000000       19.4638700000        3.7566100000
+       32.7918700000       18.8948300000        3.2517700000
+       33.5135400000       18.2386300000        3.3950100000
+       32.9158000000       19.8204600000        2.1376700000
+       33.5932100000       21.1129100000        2.6173500000
+       33.5277000000       22.2789900000        1.6358500000
+       32.3046900000       22.8030400000        1.2553400000
+       34.6970300000       22.8168100000        1.1309600000
+       32.2574800000       23.8596400000        0.3691600000
+       34.6384800000       23.8740800000        0.2458200000
+       33.4216300000       24.3953700000       -0.1362500000
+       33.7377300000       19.1448200000        1.0444100000
+       34.5187700000       18.2278200000        1.3085000000
+       33.5589000000       19.6013500000       -0.1951800000
+       33.0228000000       20.4097000000       -0.3413400000
+       34.2254700000       19.0413300000       -1.3608800000
+       33.3861100000       17.8573600000       -1.9285500000
+       34.1507300000       17.2878200000       -2.9864600000
+       33.7389300000       16.4626400000       -3.2618100000
+       31.9935300000       18.2492600000       -2.4197200000
+       34.4329900000       20.1754300000       -2.3680400000
+       34.1344900000       21.3363200000       -2.0657800000
+       34.9258800000       19.8770500000       -3.5748900000
+       35.0395600000       18.9247400000       -3.7927900000
+       35.2133000000       20.8945500000       -4.5802900000
+       36.1752200000       20.3448000000       -5.6721700000
+       36.5873000000       21.4378500000       -6.6532800000
+       37.4328700000       19.7442900000       -5.0545300000
+       33.9057700000       21.4292300000       -5.1696400000
+       33.3454200000       20.9046400000       -6.1348300000
+       33.3960800000       22.4662400000       -4.5039000000
+       33.8322200000       22.7512300000       -3.6680300000
+       32.1967700000       23.1837500000       -4.9088100000
+       30.9224900000       22.3895100000       -4.4839900000
+       29.8097900000       23.0830200000       -5.0423700000
+       29.0217300000       22.5418300000       -4.9306000000
+       30.7507700000       22.2229900000       -2.9746100000
+       32.2486600000       24.5876300000       -4.2997000000
+       33.2212300000       24.9541100000       -3.6346800000
+       31.2083500000       25.3963400000       -4.5140200000
+       30.4261000000       25.0102800000       -4.9665300000
+       31.1562800000       26.7554500000       -3.9901300000
+       29.9837400000       27.4897800000       -4.6530100000
+       29.9462700000       29.0033500000       -4.4439300000
+       28.7757500000       29.6913300000       -5.1335100000
+       27.7141200000       29.8023700000       -4.5223700000
+       28.9304100000       30.1138100000       -6.2783300000
+       31.0392100000       26.7612100000       -2.4614300000
+       30.2098100000       26.0220200000       -1.9254200000
+       31.7664200000       27.5200500000       -1.8217600000
+
+   160 CHARMM atoms for CHARMM19 with no capgroup
+Maximum and minimum probabilities for twisting are       0.4000      0.2000
+Maximum and minimum number of twists are      10.0000      0.0000
+Internal coordinate transformation will be used
+Container radius=        5.0003514214
+Sloppy quench tolerances for RMS gradient    0.0010000000
+In run   1 temperature fixed at    1.000    
+Step size and angular threshold will be adjusted for acceptance ratio       0.3000 initial values=     60.0000      0.0000
+Configuration will be reset to quench geometry
+Sampling using Boltzman weights
+Nocedal LBFGS minimization
+Number of updates before reset in LBFGS= 50
+Maximum step size=        0.4000000000
+Guess for initial diagonal elements in LBFGS=  0.1000    
+Final quench tolerance for RMS gradient    0.0000100000
+Energy difference criterion for minima=   0.0100000000
+Maximum number of iterations: sloppy quenches 10000 final quenches 10000
+Run   1:        10 steps with temperature scaled by  0.10000000E+01
+Maximum allowed energy rise during a minimisation=    0.1000000000E-09
+
+Calculating initial energy
+Qu          1 E=     -476.9474281776 steps=    3 RMS= 0.94472E-03 Markov E=    -476.9474282     t=        0.5
+Starting MC run of         10 steps
+Temperature will be multiplied by      1.00000000 at every step
+Qu          2 E=     -479.1286830227 steps=  333 RMS= 0.92291E-03 Markov E=    -476.9474282     t=        7.1
+Qu          3 E=     -479.4295026419 steps=  243 RMS= 0.96391E-03 Markov E=    -479.1286830     t=       11.9
+Qu          4 E=     -479.0588218150 steps=  178 RMS= 0.93026E-03 Markov E=    -479.4295026     t=       15.2
+Qu          5 E=     -479.3596391859 steps=  128 RMS= 0.95603E-03 Markov E=    -479.0588218     t=       17.4
+Qu          6 E=     -490.6097121491 steps=  248 RMS= 0.96390E-03 Markov E=    -479.3596392     t=       21.4
+Qu          7 E=     -492.6766263765 steps=  463 RMS= 0.91032E-03 Markov E=    -490.6097121     t=       29.2
+Qu          8 E=     -492.6766256070 steps=  221 RMS= 0.95514E-03 Markov E=    -492.6766264     t=       31.9
+Qu          9 E=     -492.6766262312 steps=  541 RMS= 0.97287E-03 Markov E=    -492.6766256     t=       43.1
+Qu         10 E=     -487.5538259343 steps=  302 RMS= 0.98692E-03 Markov E=    -492.6766262     t=       47.5
+Qu         11 E=     -487.3253623758 steps=  160 RMS= 0.93463E-03 Markov E=    -492.6766262     t=       49.7
+[ 1] Acceptance ratio for run=     0.00000 Step=    60.00000 Angular step factor=     0.00000 Temperature=     1.00000
+Final Quench      1 energy=     -492.6766284199 steps=   92 RMS force=      0.0000099 time=       50.62
+Final Quench      2 energy=     -490.6097156504 steps=  104 RMS force=      0.0000088 time=       51.76
+Final Quench      3 energy=     -487.5538280969 steps=   94 RMS force=      0.0000100 time=       52.74
+Final Quench      4 energy=     -487.3253654108 steps=   74 RMS force=      0.0000096 time=       53.55
+Final Quench      5 energy=     -479.4295048225 steps=   75 RMS force=      0.0000074 time=       54.23
+Final Quench      6 energy=     -479.3596444409 steps=   74 RMS force=      0.0000099 time=       54.92
+Final Quench      7 energy=     -479.1286862054 steps=   73 RMS force=      0.0000084 time=       55.59
+Final Quench      8 energy=     -479.0588258088 steps=   67 RMS force=      0.0000095 time=       56.24
+Final Quench      9 energy=     -476.9474284797 steps=   28 RMS force=      0.0000094 time=       56.47
